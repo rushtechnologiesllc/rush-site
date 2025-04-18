@@ -1,61 +1,137 @@
+/* Reset & base */
 body {
   margin: 0;
+  padding: 0;
   background: #000;
   color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+a {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: white;
+}
+
+/* Header */
 header {
   background: #111;
-  padding: 16px 32px;
+  padding: 18px 32px;
   display: flex;
   justify-content: flex-end;
 }
-
-nav a {
-  color: #aaa;
-  margin-left: 20px;
-  text-decoration: none;
+header nav a {
+  margin-left: 24px;
   font-size: 0.95em;
 }
 
-nav a:hover {
-  color: #fff;
-}
-
+/* Hero Section */
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
+  min-height: 90vh;
+  padding: 40px 20px;
   text-align: center;
-  padding: 20px;
 }
-
 .hero h1 {
-  font-size: 4em;
-  margin-bottom: 10px;
+  font-size: 4rem;
+  margin-bottom: 16px;
   font-weight: 700;
+  color: #fff;
 }
-
 .hero p {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   color: #bbb;
-  max-width: 500px;
+  max-width: 600px;
+  margin-bottom: 30px;
 }
-
 .download-btn {
-  margin-top: 24px;
-  padding: 12px 24px;
-  background: #fff;
-  color: #000;
-  border-radius: 10px;
-  text-decoration: none;
+  padding: 14px 28px;
+  background: white;
+  color: black;
+  border-radius: 12px;
   font-weight: 600;
-  font-size: 1em;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+.download-btn:hover {
+  background: #ddd;
+}
+.scroll-arrow {
+  margin-top: 40px;
+  font-size: 2rem;
+  color: #666;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
 }
 
-.download-btn:hover {
-  background: #eee;
+/* Features Section */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #111;
+  padding: 60px 20px;
+  text-align: center;
+}
+.feature-box {
+  flex: 1 1 250px;
+  margin: 20px;
+  max-width: 320px;
+}
+.feature-box h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+.feature-box p {
+  font-size: 1rem;
+  color: #aaa;
+}
+
+/* Split Section */
+.split {
+  display: flex;
+  flex-wrap: wrap;
+  background: #000;
+  padding: 60px 20px;
+}
+.split-left,
+.split-right {
+  flex: 1;
+  padding: 20px 40px;
+  min-width: 300px;
+}
+.split-left h2,
+.split-right h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+.split-left p,
+.split-right p {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+/* Footer */
+footer {
+  background: #111;
+  padding: 20px 30px;
+  text-align: center;
+}
+footer p {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 10px;
+}
+footer nav a {
+  margin: 0 12px;
+  font-size: 0.85rem;
 }
