@@ -3,58 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rush App</title>
+  <title>Rush</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
+  <header class="navbar">
     <nav>
-      <a href="terms.html">Terms of Service</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="contact.html">Contact Us</a>
-    </nav>
-  </header>
-
-  <main class="hero">
-    <h1>Rush</h1>
-    <p>The future of student nightlife. Instantly buy and sell event tickets, peer-to-peer.</p>
-    <a class="download-btn" href="#" target="_blank">Download on the App Store</a>
-    <div class="scroll-arrow">⌄</div>
-  </main>
-
-  <section class="features">
-    <div class="feature-box">
-      <h2>⚡ Instant Access</h2>
-      <p>Buy tickets in seconds with secure peer-to-peer transactions.</p>
-    </div>
-    <div class="feature-box">
-      <h2>👥 Verified Community</h2>
-      <p>Only students. Real users. No sketchy resellers.</p>
-    </div>
-    <div class="feature-box">
-      <h2>📍 Local First</h2>
-      <p>See what’s happening right on your campus — no noise, just your scene.</p>
-    </div>
-  </section>
-
-  <section class="split">
-    <div class="split-left">
-      <h2>Built for Students</h2>
-      <p>Everything about Rush is optimized for student life: simplicity, security, and speed.</p>
-    </div>
-    <div class="split-right">
-      <h2>Launch Your Night</h2>
-      <p>No need to wait on sketchy links. Just open Rush, grab your spot, and go.</p>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Rush. All rights reserved.</p>
-    <nav>
+      <a href="index.html">Home</a>
       <a href="terms.html">Terms</a>
       <a href="privacy.html">Privacy</a>
       <a href="contact.html">Contact</a>
     </nav>
+  </header>
+
+  <section class="hero">
+    <img src="assets/hero.jpg" alt="App Hero" class="hero-image" />
+    <div class="hero-text">
+      <h1>Rush</h1>
+      <p>The fastest way to buy and sell tickets on campus.</p>
+      <a href="#" class="cta">Download on the App Store</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature" data-animate>
+      <img src="assets/feature1.png" alt="Feature 1" />
+      <h2>Instant Payments</h2>
+      <p>Send and receive money without the hassle. No middlemen.</p>
+    </div>
+    <div class="feature" data-animate>
+      <img src="assets/feature2.png" alt="Feature 2" />
+      <h2>Student Verified</h2>
+      <p>Only verified students can post or buy — real people, no bots.</p>
+    </div>
+    <div class="feature" data-animate>
+      <img src="assets/feature3.png" alt="Feature 3" />
+      <h2>Campus First</h2>
+      <p>Events, tickets, and connections — all centered around your school.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Rush — All rights reserved</p>
   </footer>
+
+  <script>
+    // Animate on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
