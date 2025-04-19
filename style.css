@@ -42,12 +42,12 @@ a:hover {
   object-fit: cover;
   opacity: 0.3;
 }
-.hero-text {
-  max-width: 650px;
-  width: 100%;
-  text-align: center;
+.hero-text { /* This positioning conflicts with index.html flex layout */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
 .hero-text h1 {
   font-size: 4rem;
   font-weight: 700;
@@ -102,11 +102,6 @@ a:hover {
 .feature p {
   color: #aaa; /* Original text color */
   font-size: 0.95rem;
-}
-.cta-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Footer */
