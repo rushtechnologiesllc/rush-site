@@ -28,67 +28,84 @@ a:hover {
 .navbar {
   position: sticky;
   top: 0;
-  background: #111; /* Dark background for navbar */
+  background: #111;
   padding: 16px 32px;
   z-index: 1000;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid #222; /* Subtle separator */
+  border-bottom: 1px solid #222;
 }
 .navbar nav a {
   margin: 0 20px;
   font-weight: 500;
   font-size: 0.95rem;
-  color: #aaa; /* Navbar link color */
+  color: #aaa;
 }
 .navbar nav a:hover {
-    color: #fff; /* Navbar link hover color */
+    color: #fff;
 }
 
 /* ========================================= */
 /* Index Page Specific Content Area          */
 /* ========================================= */
 .index-content {
-    padding: 4em 2em 2em 2em; /* Padding top/sides/bottom */
-    text-align: center; /* Center heading and button wrapper */
-    background-color: #000; /* Ensure background matches body */
+    padding: 4em 2em 4em 2em; /* Increased bottom padding for gap */
+    text-align: center; /* Center all inline/inline-block children */
+    background-color: #000;
 }
 
-.page-heading {
-    font-size: 1.5rem; /* Adjust size as needed */
-    font-weight: 500; /* Medium weight */
-    color: #e0e0e0; /* Light gray */
-    margin-bottom: 1.5em; /* Space below heading */
-    max-width: 600px; /* Limit width */
-    margin-left: auto;
+/* Style for the reintroduced H1 */
+.index-content h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Large, responsive size */
+    font-weight: 700;
+    color: #fff;
+    margin-top: 0; /* Remove default top margin */
+    margin-bottom: 0.3em; /* Space below H1 */
+    margin-left: auto; /* Ensure centered */
     margin-right: auto;
+    letter-spacing: -1px;
+    max-width: 800px; /* Optional: constrain width */
+}
+
+/* Style for the paragraph below H1 */
+.page-subheading {
+    font-size: clamp(1rem, 2.5vw, 1.25rem); /* Responsive size */
+    font-weight: 400; /* Regular weight */
+    color: #d0d0d0; /* Slightly dimmer than white */
+    margin-top: 0; /* Remove default top margin */
+    margin-bottom: 1.8em; /* Space below subheading */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto; /* Center block */
 }
 
 .cta-wrapper {
-  margin-bottom: 3em; /* Space below button before features */
+  margin-top: 20px; /* Space above button */
+  /* Centering happens via text-align on parent */
 }
 
-/* Index Page CTA Button (Matches image) */
+/* Index Page CTA Button */
 .cta.index-cta {
   display: inline-block;
-  background-color: #ffffff; /* White background */
-  color: #000000;           /* Black text */
-  padding: 10px 25px;       /* Adjust padding */
-  font-size: 0.95rem;       /* Adjust size */
-  font-weight: 600;
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  padding: 10px 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
   text-decoration: none;
-  border-radius: 25px;      /* Highly rounded corners */
-  border: none;             /* No border */
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle glow */
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  box-shadow: none;
   cursor: pointer;
 }
 
 .cta.index-cta:hover {
-  background-color: #e8e8e8; /* Slightly off-white on hover */
+  background-color: #1a1a1a;
+  border-color: #cccccc;
+  color: #ffffff;
   transform: translateY(-2px);
   text-decoration: none;
-  color: #000000; /* Keep text black */
 }
 
 
@@ -96,56 +113,57 @@ a:hover {
 /* Features Section (Refined to match image) */
 /* ========================================= */
 .features {
-  display: flex; /* Lay out features horizontally */
-  flex-wrap: wrap; /* Allow wrapping on small screens */
-  justify-content: center; /* Center features horizontally */
-  padding: 2em 2em 4em 2em; /* Padding top/sides/bottom */
-  background: #000; /* Match body background */
-  gap: 3em; /* Space between feature boxes */
-  max-width: 1100px; /* Max width of the whole section */
-  margin: 0 auto; /* Center the section */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* Padding top adjusted, more space now comes from .index-content padding-bottom */
+  padding: 2em 2em 4em 2em;
+  background: #000;
+  gap: 3em;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 .feature {
-  flex: 1 1 280px; /* Allow grow/shrink, base width */
-  max-width: 300px; /* Max width per feature */
+  flex: 1 1 280px;
+  max-width: 300px;
   text-align: center;
-  background-color: transparent; /* No card background shown in image */
-  padding: 0 1em; /* Add horizontal padding */
-  border: none; /* No border */
-  border-radius: 0; /* No rounding */
-  /* Animation */
+  background-color: transparent;
+  padding: 0 1em;
+  border: none;
+  border-radius: 0;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 .feature:hover {
-    transform: translateY(0); /* Remove hover lift if not desired */
-    box-shadow: none; /* Remove hover shadow */
+    transform: translateY(0);
+    box-shadow: none;
 }
 .feature.show {
   opacity: 1;
   transform: translateY(0);
 }
 .feature img {
-  max-width: 100%; /* Let image fill available space up to max */
+  max-width: 100%;
   height: auto;
-  max-height: 180px; /* Limit image height if needed */
-  object-fit: contain; /* Ensure image fits without distortion */
-  margin-bottom: 1.5em; /* Space below image */
+  max-height: 180px;
+  object-fit: contain;
+  margin-bottom: 1.5em;
   display: inline-block;
+  border-radius: 8px;
 }
 .feature h2 {
   margin-top: 0;
   margin-bottom: 0.6em;
-  font-size: 1.2rem; /* Adjust size */
-  font-weight: 600; /* Bold */
-  color: #ffffff; /* White heading */
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
 }
 .feature p {
-  color: #aaa; /* Dimmer paragraph text */
-  font-size: 0.9rem; /* Adjust size */
+  color: #aaa;
+  font-size: 0.9rem;
    line-height: 1.5;
-   max-width: 250px; /* Limit paragraph width */
+   max-width: 250px;
    margin-left: auto;
    margin-right: auto;
 }
@@ -158,7 +176,7 @@ a:hover {
 /* Content Pages (Terms, Privacy, Contact)   */
 /* Styles REQUIRED for other views           */
 /* ========================================= */
-.hero.terms-page { /* Container for content pages */
+.hero.terms-page {
   display: block; position: static; min-height: auto;
   background-image: none; background-color: #0a0a0a;
   max-width: 800px; margin: 3em auto; padding: 2em 3em;
@@ -216,21 +234,22 @@ a:hover {
 /* Footer (Consistent Across Pages)          */
 /* ========================================= */
 footer {
-  background: #111; /* Match navbar background */
+  background: #111;
   text-align: center;
   padding: 20px;
   font-size: 0.85rem;
   color: #888;
-  border-top: 1px solid #2c2c2e; /* Subtle top border */
-  margin-top: 3em; /* Space above footer */
+  border-top: 1px solid #2c2c2e;
+  margin-top: 3em;
 }
 
 /* ========================================= */
 /* Responsive adjustments                    */
 /* ========================================= */
 @media (max-width: 768px) {
-  .page-heading { font-size: 1.3rem; }
-  .features { flex-direction: column; align-items: center; padding: 3em 1em; gap: 2.5em;}
+  .index-content h1 { font-size: 2.2rem; } /* Adjust H1 size */
+  .page-subheading { font-size: 1.1rem; } /* Adjust subheading size */
+  .features { flex-direction: column; align-items: center; padding: 2em 1em 3em 1em; gap: 2.5em;}
   .feature { min-width: 80%; max-width: 350px; flex-basis: auto; }
   .hero.terms-page { padding: 1.5em; margin: 2em auto; }
   .terms-page h1 { font-size: 2em; }
