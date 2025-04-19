@@ -2,22 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Redirecting…</title>
+  <title>Redirecting to Rush App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
-    // Get the `next` param from the URL
-    const params = new URLSearchParams(window.location.search);
-    const next = params.get("next");
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      const type = params.get('type');
 
-    if (next) {
-      // Decode and redirect
-      window.location.href = decodeURIComponent(next);
-    } else {
-      document.body.innerHTML = "<p>Error: No redirect target found.</p>";
+      if (token && type === 'recovery') {
+        const deepLink = `rushapp://reset#access_token=${token}&type=${type}`;
+        console.log("Redirecting to:", deepLink);
+        window.location.href = deepLink;
+      } else {
+        document.body.innerHTML = "<h2>Invalid reset link.</h2>";
+      }
     }
   </script>
 </head>
-<body>
-  <p>Redirecting you to the app…</p>
+<body style="background:#000;color:#fff;text-align:center;padding:2em;">
+  <h2>Redirecting you to the Rush app…</h2>
 </body>
 </html>
