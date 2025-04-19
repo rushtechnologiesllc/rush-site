@@ -103,6 +103,11 @@ a:hover {
   color: #aaa; /* Original text color */
   font-size: 0.95rem;
 }
+.cta-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* Footer */
 footer {
