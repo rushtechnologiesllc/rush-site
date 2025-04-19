@@ -1,124 +1,304 @@
-/* Reset */
+/* ========================================= */
+/* Reset & Defaults                          */
+/* ========================================= */
+html {
+  scroll-behavior: smooth; /* Added for potential TOC links */
+}
+
 body {
   margin: 0;
-  background: #000;
-  color: #fff;
+  background: #000; /* Base background */
+  color: #fff;      /* Base text color */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6; /* Added for better readability */
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 a {
   text-decoration: none;
-  color: #aaa;
+  color: #aaa; /* Original link color */
+   transition: color 0.2s ease; /* Added smooth transition */
 }
 a:hover {
-  color: #fff;
+  color: #fff; /* Original hover color */
 }
 
-/* Navbar (This section defines the header look) */
+/* ========================================= */
+/* Navbar (Unchanged from your version)      */
+/* ========================================= */
 .navbar {
-  position: sticky;
+  position: sticky; /* Keeps navbar at the top */
   top: 0;
-  background: #111;
-  padding: 16px 32px;
-  z-index: 1000;
+  background: #111; /* Dark background */
+  padding: 16px 32px; /* Vertical and horizontal padding */
+  z-index: 1000; /* Ensure navbar stays on top */
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Center navigation links */
+  border-bottom: 1px solid #222; /* Added subtle separator */
 }
 .navbar nav a {
-  margin: 0 20px;
+  margin: 0 20px; /* Spacing between nav links */
   font-weight: 500;
   font-size: 0.95rem;
-  /* Color will inherit from base 'a' rule (#aaa) */
+  color: #aaa; /* Ensure navbar links use the base 'a' color */
+}
+.navbar nav a:hover {
+    color: #fff; /* Ensure hover matches base 'a:hover' */
 }
 
-/* Hero (These rules may conflict with index.html's inline styles) */
+/* ========================================= */
+/* Hero Section (Corrected for absolute positioning) */
+/* ========================================= */
 .hero {
-  position: relative;
+  position: relative; /* Crucial for absolute positioning of children */
   text-align: center;
-  /* Note: index.html inline styles will likely override background/layout */
+  min-height: 70vh; /* Give the hero section height */
+  padding: 4em 2em; /* Add some padding */
+  display: flex; /* Use flex to help center fallback content if needed */
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  overflow: hidden; /* Clip any potential overflow */
+
+  /* Apply Background Directly Here */
+  background-color: #111; /* Fallback color */
+  /* --- CONFIRM & REPLACE BACKGROUND --- */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('assets/campus_event_blur.jpg'); /* Example - REPLACE! */
+  /* --- END REPLACE --- */
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed; /* Optional: Keep parallax effect */
 }
-.hero-image { /* This class is likely NOT in your current index.html */
+
+/* This class is likely NOT in your current index.html, KEEP COMMENTED or remove */
+/*
+.hero-image {
   width: 100%;
   height: 90vh;
   object-fit: cover;
   opacity: 0.3;
 }
-.hero-text { /* This positioning conflicts with index.html flex layout */
+*/
+
+/* Keep original absolute positioning for centering */
+.hero-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-.hero-text h1 {
-  font-size: 4rem;
-  font-weight: 700;
-  color: #fff;
-}
-.hero-text p {
-  font-size: 1.2rem;
-  color: #ccc;
-}
-.cta { /* This style will likely be overridden by index.html inline style */
-  display: inline-block;
-  margin-top: 20px;
-  padding: 14px 28px;
-  background: #fff;
-  color: #000;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 1rem;
-}
-.cta:hover { /* This style will likely be overridden by index.html inline style */
-  background: #ddd;
+  z-index: 2; /* Ensure text is above background */
+  width: 90%; /* Prevent text becoming too wide */
+  max-width: 650px; /* Max width */
+  /* Text-align should be inherited from .hero, but can be explicit */
+  text-align: center;
 }
 
-/* Features */
+/* Keep original H1 styles - Color is set, so it should be visible */
+.hero-text h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem); /* Use responsive font size */
+  font-weight: 700;
+  color: #fff; /* White color */
+  margin-top: 0;
+  margin-bottom: 0.3em;
+}
+
+/* Keep original P styles */
+.hero-text p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem); /* Use responsive font size */
+  color: #ccc;
+  margin-bottom: 1.8em; /* Consistent margin */
+  max-width: 500px; /* Limit width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Keep original CTA styles, ensure it's within .hero-text or position correctly */
+.cta {
+  display: inline-block;
+  margin-top: 20px;
+  /* === APPLYING BLACK/WHITE STYLE HERE === */
+  background-color: #000000; /* Black background */
+  color: #ffffff;           /* White text */
+  padding: 12px 25px;       /* Consistent padding */
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;       /* Consistent radius */
+  border: 2px solid #ffffff; /* White outline */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.cta:hover {
+  /* === APPLYING BLACK/WHITE HOVER STYLE HERE === */
+  background-color: #222222; /* Slightly lighter black */
+  color: #ffffff;
+  border-color: #cccccc;     /* Slightly dimmer border */
+  transform: translateY(-2px); /* Consistent hover lift */
+  text-decoration: none;
+}
+
+/* Wrapper div for CTA if needed for extra centering control (optional) */
+.cta-wrapper {
+  /* display: flex; */ /* Not needed if .hero-text is text-align: center */
+  /* justify-content: center; */
+  /* align-items: center; */
+  margin-top: 20px; /* Add space above button */
+}
+
+
+/* ========================================= */
+/* Features Section (Using mostly original styles) */
+/* ========================================= */
 .features {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 80px 20px;
-  background: #111;
-  gap: 40px;
+  padding: 80px 20px; /* Original padding */
+  background: #111; /* Original background */
+  gap: 40px; /* Original gap */
+  max-width: 1100px; /* Added max-width */
+  margin: 0 auto; /* Center container */
 }
 .feature {
-  width: 280px; /* Fixed width */
+  /* width: 280px; */ /* Using flex basis instead */
+  flex: 1 1 280px; /* Flex grow, shrink, basis */
+  max-width: 320px; /* Limit max width */
   text-align: center;
+  background-color: #1c1c1e; /* Added card background */
+  padding: 1.5em; /* Added padding */
+  border-radius: 10px; /* Added rounded corners */
+  border: 1px solid #2c2c2e; /* Added subtle border */
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease; /* Original + new transitions */
+}
+.feature:hover {
+    transform: translateY(-5px); /* Added consistent hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Added consistent hover */
 }
 .feature.show {
   opacity: 1;
   transform: translateY(0);
 }
 .feature img {
-  width: 100px; /* Original image size */
-  margin-bottom: 20px;
+  /* width: 100px; */ /* Using max-width */
+  max-width: 80px; /* Consistent size */
+  height: auto;
+  margin-bottom: 20px; /* Original margin */
+  display: inline-block; /* Added for alignment */
 }
 .feature h2 {
   margin: 10px 0;
-  font-size: 1.3rem;
+  font-size: 1.3rem; /* Original size */
+  color: #f5f5f7; /* Brighter color */
 }
 .feature p {
-  color: #aaa; /* Original text color */
-  font-size: 0.95rem;
-}
-.cta-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: #aaa; /* Original color */
+  font-size: 0.95rem; /* Original size */
+   line-height: 1.5; /* Added for readability */
 }
 
-/* Footer */
+/* ========================================= */
+/* Content Pages (Terms, Privacy, Contact)   */
+/* RE-ADDING styles needed for other pages   */
+/* ========================================= */
+.hero.terms-page { /* Different styling for the container on content pages */
+  display: block; /* Override hero flex */
+  position: static; /* Override hero relative */
+  min-height: auto; /* Override hero min-height */
+  background-image: none; /* Remove hero background */
+  background-color: #0a0a0a; /* Match body */
+  max-width: 800px;
+  margin: 3em auto;
+  padding: 2em 3em;
+  border: 1px solid #222;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  text-align: left;
+}
+.terms-page h1 { /* Main title on content pages */
+  font-size: 2.4em; font-weight: 600; text-align: left;
+  margin-bottom: 0.2em; color: #fff;
+}
+.last-updated {
+  text-align: left; color: #888; font-size: 0.9em;
+  margin-bottom: 2.5em; margin-top: 0;
+}
+.terms-content h2 {
+  font-size: 1.6em; font-weight: 600; margin-top: 2.5em; margin-bottom: 1em;
+  padding-bottom: 0.4em; border-bottom: 1px solid #444; color: #eee; text-align: left;
+}
+.terms-content h3 {
+  font-size: 1.2em; font-weight: 600; margin-top: 1.8em; margin-bottom: 0.8em;
+  color: #ddd; text-align: left;
+}
+.terms-content p, .terms-content li {
+  font-size: 0.95rem; margin-bottom: 1.2em; color: #ccc; text-align: left;
+}
+.terms-content ul, .terms-content ol {
+  margin-left: 0; padding-left: 1.8em; margin-bottom: 1.2em; text-align: left;
+}
+.terms-content li { margin-bottom: 0.6em; }
+.terms-content a { color: #aaccff; text-decoration: none; }
+.terms-content a:hover { color: #fff; text-decoration: underline; }
+/* TOC */
+.toc {
+  margin-top: 2.5em; margin-bottom: 3.5em; padding: 1.5em 2em;
+  background-color: #1a1a1a; border: 1px solid #333; border-radius: 5px; text-align: left;
+}
+.toc h2 { border-bottom: none; margin-top: 0; margin-bottom: 1em; text-align: left; font-size: 1.3em; }
+.toc ul { list-style: none; padding: 0; margin: 0; text-align: left; }
+.toc li { margin-bottom: 0.6em; font-size: 0.95em; }
+.toc a { color: #aaccff; text-decoration: none; }
+.toc a:hover, .toc a:focus { color: #fff; text-decoration: underline; }
+/* Placeholders */
+.placeholder-text {
+  font-style: italic; color: #ffcc00; background-color: rgba(255, 204, 0, 0.1);
+  padding: 0.2em 0.4em; border-radius: 3px; display: inline;
+}
+/* Privacy */
+.summary-points ul { list-style-type: disc; padding-left: 2em; }
+.summary-points li { margin-bottom: 0.8em; }
+/* Contact */
+.contact-info p { margin-bottom: 0.5em; }
+
+/* ========================================= */
+/* Footer (Using your original styles)       */
+/* ========================================= */
 footer {
-  background: #111;
+  background: #111; /* Original background */
   text-align: center;
-  padding: 20px;
-  font-size: 0.85rem;
-  color: #888;
+  padding: 20px; /* Original padding */
+  font-size: 0.85rem; /* Original size */
+  color: #888; /* Original color */
+  border-top: 1px solid #2c2c2e; /* Added subtle top border */
+  margin-top: 3em; /* Added consistent margin */
 }
 
-/* NB: This CSS file LACKS styles for .terms-page, .terms-content, .toc etc.
-   Those pages will require additional styling. */
-
-/* NB: This CSS file LACKS specific responsive rules beyond flex-wrap. */
+/* ========================================= */
+/* Responsive adjustments                    */
+/* Re-adding basic responsive rules        */
+/* ========================================= */
+@media (max-width: 768px) {
+  .hero {
+     min-height: 60vh;
+     background-attachment: scroll; /* Fixed can be bad on mobile */
+     padding: 3em 1em;
+  }
+  .features {
+    flex-direction: column;
+    align-items: center;
+    padding: 3em 1em;
+  }
+  .feature {
+    min-width: 80%;
+    max-width: 400px;
+    flex-basis: auto; /* Override flex-basis */
+  }
+  .hero.terms-page { padding: 1.5em; margin: 2em auto; }
+  .terms-page h1 { font-size: 2em; }
+   .terms-content h2 { font-size: 1.4em; }
+   .navbar { padding: 12px 16px; }
+   .navbar nav a { margin: 0 10px; }
+}
