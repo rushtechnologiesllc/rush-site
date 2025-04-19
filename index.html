@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rush - Campus Ticket Exchange</title>
-  <!-- Link to external stylesheet -->
+  <!-- Link to external stylesheet (controls navbar look) -->
   <link rel="stylesheet" href="style.css" />
   <!-- Inline styles for index.html layout -->
   <style>
@@ -29,12 +29,12 @@
 
     /* Hero Section Styling */
     .hero {
-      /* These rules center the .hero-text block horizontally/vertically */
+      /* Flex rules center the .hero-text block horizontally */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      /* This rule centers the text *inside* the .hero block */
+      /* Text-align centers inline content within .hero */
       text-align: center;
 
       min-height: 70vh;
@@ -55,16 +55,24 @@
       position: relative;
       z-index: 2;
       max-width: 650px;
-      /* Text alignment inherited from .hero's text-align: center */
+      width: 90%; /* Ensure it takes up space if max-width isn't hit */
+      /* ===== ADDED EXPLICIT CENTERING RULE ===== */
+      text-align: center; /* Force text alignment for content inside this div */
+      /* Adding auto margins as another way to ensure block centering */
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero h1 {
       font-size: clamp(2.5rem, 6vw, 4.5rem);
       font-weight: 700;
+      margin-top: 0; /* Reset potential top margin */
       margin-bottom: 0.3em;
+      margin-left: auto; /* Ensure h1 itself doesn't have odd margins */
+      margin-right: auto;
       letter-spacing: -1px;
       color: #fff;
-      /* No text-align needed here, inherits from parent */
+      /* No text-align needed here if .hero-text has it */
     }
 
     .hero p {
@@ -72,6 +80,7 @@
       margin-bottom: 1.8em;
       color: #d0d0d0;
       max-width: 500px;
+      /* Auto L/R margins already present */
       margin-left: auto;
       margin-right: auto;
     }
@@ -186,7 +195,7 @@
   </style>
 </head>
 <body>
-  <!-- Header: Uses styles from style.css -->
+  <!-- Header: Appearance is controlled by style.css -->
   <header class="navbar">
     <nav>
       <a href="index.html">Home</a>
@@ -198,7 +207,9 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-text">
+    <!-- .hero styles use flex align-items: center to center this div -->
+    <!-- .hero styles use text-align: center to center inline text -->
+    <div class="hero-text"> <!-- Explicit text-align: center added inline -->
       <h1>Rush</h1>
       <p>The fastest way to buy and sell tickets on campus.</p>
       <a href="YOUR_APP_STORE_LINK_HERE" class="cta" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
@@ -218,7 +229,7 @@
       <p>Only verified students can post or buy — real people, no bots.</p>
     </div>
     <div class="feature" data-animate>
-      <!-- Confirm this path/filename is EXACTLY correct -->
+      <!-- Assuming feature3.jpeg is the correct, working path now -->
       <img src="assets/feature3.jpeg" alt="Campus Focused Icon">
       <h2>Campus First</h2>
       <p>Events, tickets, and connections — all centered around your school.</p>
