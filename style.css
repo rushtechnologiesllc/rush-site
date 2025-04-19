@@ -1,71 +1,48 @@
-/* ========================================= */
-/* Reset & Defaults                          */
-/* ========================================= */
+/* Reset */
 body {
   margin: 0;
-  background: #000; /* Base background */
-  color: #fff;      /* Base text color */
+  background: #000;
+  color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.6; /* Added for better readability */
-  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 a {
   text-decoration: none;
-  color: #aaa; /* Original link color */
-   transition: color 0.2s ease; /* Added smooth transition */
+  color: #aaa;
 }
 a:hover {
-  color: #fff; /* Original hover color */
-}
-
-/* ========================================= */
-/* Navbar (Using your original styles)       */
-/* ========================================= */
-.navbar {
-  position: sticky; /* Keeps navbar at the top */
-  top: 0;
-  background: #111; /* Dark background */
-  padding: 16px 32px; /* Vertical and horizontal padding */
-  z-index: 1000; /* Ensure navbar stays on top */
-  display: flex;
-  justify-content: center; /* Center navigation links */
-  border-bottom: 1px solid #222; /* Added subtle separator like previous examples */
-}
-.navbar nav a {
-  margin: 0 20px; /* Spacing between nav links */
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: #aaa; /* Ensure navbar links use the base 'a' color */
-}
-.navbar nav a:hover {
-    color: #fff; /* Ensure hover matches base 'a:hover' */
-}
-
-
-/* ========================================= */
-/* Hero Section (Minimal styles)             */
-/* ========================================= */
-/* IMPORTANT: Most hero styling (background, layout, text positioning, CTA button)
-   should now be handled by the INLINE <style> block within index.html
-   because the HTML structure changed. These external rules are minimal
-   or commented out to avoid conflicts. */
-
-.hero {
-  /* position: relative; */ /* Position handled inline */
-  /* text-align: center; */ /* Text align handled inline */
-  /* Keep basic text color if needed, but likely handled inline */
   color: #fff;
 }
 
-/* REMOVED: These rules conflict with the new index.html structure */
-/*
-.hero-image {
+/* Navbar (This section defines the header look) */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: #111;
+  padding: 16px 32px;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+}
+.navbar nav a {
+  margin: 0 20px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  /* Color will inherit from base 'a' rule (#aaa) */
+}
+
+/* Hero (These rules may conflict with index.html's inline styles) */
+.hero {
+  position: relative;
+  text-align: center;
+  /* Note: index.html inline styles will likely override background/layout */
+}
+.hero-image { /* This class is likely NOT in your current index.html */
   width: 100%;
   height: 90vh;
   object-fit: cover;
   opacity: 0.3;
 }
-.hero-text {
+.hero-text { /* This positioning conflicts with index.html flex layout */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -80,7 +57,7 @@ a:hover {
   font-size: 1.2rem;
   color: #ccc;
 }
-.cta {
+.cta { /* This style will likely be overridden by index.html inline style */
   display: inline-block;
   margin-top: 20px;
   padding: 14px 28px;
@@ -90,215 +67,53 @@ a:hover {
   font-weight: 600;
   font-size: 1rem;
 }
-.cta:hover {
+.cta:hover { /* This style will likely be overridden by index.html inline style */
   background: #ddd;
 }
-*/
 
-/* We rely on the .cta styles defined inline in index.html */
-
-
-/* ========================================= */
-/* Features Section (Using your original styles) */
-/* ========================================= */
+/* Features */
 .features {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping */
-  justify-content: center; /* Center items */
+  flex-wrap: wrap;
+  justify-content: center;
   padding: 80px 20px;
-  background: #111; /* Dark background for section */
-  gap: 40px; /* Space between feature boxes */
-  max-width: 1100px; /* Added max-width like previous example */
-  margin: 0 auto; /* Center the features container */
+  background: #111;
+  gap: 40px;
 }
 .feature {
-  /* width: 280px; */ /* Replaced by flex-basis/flex-grow */
-  flex: 1; /* Allow items to grow/shrink */
-  min-width: 280px; /* Minimum width before wrapping */
-  max-width: 320px; /* Added max-width like previous example */
+  width: 280px; /* Fixed width */
   text-align: center;
-  background-color: #1c1c1e; /* Added card background like previous */
-  padding: 1.5em; /* Added padding */
-  border-radius: 10px; /* Added rounded corners */
-  border: 1px solid #2c2c2e; /* Added subtle border */
-  /* Animation styles from original */
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease; /* Combined transitions */
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
-.feature:hover {
-    transform: translateY(-5px); /* Keep consistent hover */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Keep consistent hover */
-}
-
 .feature.show {
   opacity: 1;
   transform: translateY(0);
 }
 .feature img {
-  /* width: 100px; */ /* Replaced by max-width */
-  max-width: 80px; /* Use max-width from previous examples */
-  height: auto; /* Maintain aspect ratio */
+  width: 100px; /* Original image size */
   margin-bottom: 20px;
 }
 .feature h2 {
   margin: 10px 0;
-  font-size: 1.3rem; /* Original size */
-  color: #f5f5f7; /* Use brighter color from previous examples */
+  font-size: 1.3rem;
 }
 .feature p {
-  color: #a0a0a5; /* Use slightly lighter gray from previous examples */
-  font-size: 0.95rem; /* Original size */
-}
-
-/* ========================================= */
-/* Content Pages (Terms, Privacy, Contact)   */
-/* ========================================= */
-/* ADDING styles needed for other pages */
-.hero.terms-page { /* Specific class for content page containers */
-  max-width: 800px;
-  margin: 3em auto;
-  padding: 2em 3em;
-  background-color: #0a0a0a;
-  border: 1px solid #222;
-  border-radius: 8px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-  min-height: 40vh;
-  text-align: left; /* Override general hero text-align */
-}
-
-.terms-page h1 { /* Main title on content pages */
-  font-size: 2.4em;
-  font-weight: 600;
-  text-align: left;
-  margin-bottom: 0.2em;
-  color: #fff;
-}
-
-.last-updated { /* For Terms/Privacy */
-  text-align: left;
-  color: #888;
-  font-size: 0.9em;
-  margin-bottom: 2.5em;
-  margin-top: 0;
-}
-
-.terms-content h2 { /* Section headings on content pages */
-  font-size: 1.6em;
-  font-weight: 600;
-  margin-top: 2.5em;
-  margin-bottom: 1em;
-  padding-bottom: 0.4em;
-  border-bottom: 1px solid #444;
-  color: #eee;
-  text-align: left;
-}
-
-.terms-content h3 { /* Sub-headings on content pages */
-  font-size: 1.2em;
-  font-weight: 600;
-  margin-top: 1.8em;
-  margin-bottom: 0.8em;
-  color: #ddd;
-  text-align: left;
-}
-
-.terms-content p,
-.terms-content li {
+  color: #aaa; /* Original text color */
   font-size: 0.95rem;
-  margin-bottom: 1.2em;
-  color: #ccc;
-  text-align: left;
 }
 
-.terms-content ul,
-.terms-content ol {
-  margin-left: 0;
-  padding-left: 1.8em;
-  margin-bottom: 1.2em;
-  text-align: left;
-}
-
-.terms-content li {
-  margin-bottom: 0.6em;
-}
-
-.terms-content a { /* Specific link styling within content */
-  color: #aaccff; /* Use consistent link color */
-  text-decoration: none;
-}
-.terms-content a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-
-/* Table of Contents Styling */
-.toc {
-    margin-top: 2.5em;
-    margin-bottom: 3.5em;
-    padding: 1.5em 2em;
-    background-color: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 5px;
-    text-align: left;
-}
-.toc h2 {
-    border-bottom: none; margin-top: 0; margin-bottom: 1em;
-    text-align: left; font-size: 1.3em;
-}
-.toc ul { list-style: none; padding: 0; margin: 0; text-align: left; }
-.toc li { margin-bottom: 0.6em; font-size: 0.95em; }
-.toc a { color: #aaccff; text-decoration: none; }
-.toc a:hover, .toc a:focus { color: #fff; text-decoration: underline; }
-
-/* Placeholder Text Styling */
-.placeholder-text {
-  font-style: italic; color: #ffcc00; background-color: rgba(255, 204, 0, 0.1);
-  padding: 0.2em 0.4em; border-radius: 3px; display: inline;
-}
-/* Privacy Policy Summary Points */
-.summary-points ul { list-style-type: disc; padding-left: 2em; }
-.summary-points li { margin-bottom: 0.8em; }
-/* Contact Page Specifics */
-.contact-info p { margin-bottom: 0.5em; }
-
-/* ========================================= */
-/* Footer (Using your original styles)       */
-/* ========================================= */
+/* Footer */
 footer {
-  background: #111; /* Dark background */
+  background: #111;
   text-align: center;
   padding: 20px;
-  font-size: 0.85rem; /* Original size */
-  color: #888; /* Original color */
-  border-top: 1px solid #2c2c2e; /* Added subtle top border */
-  margin-top: 3em; /* Added consistent margin */
+  font-size: 0.85rem;
+  color: #888;
 }
 
-/* ========================================= */
-/* Responsive adjustments                    */
-/* ========================================= */
-@media (max-width: 768px) {
-  /* Stack features vertically */
-  .features {
-    flex-direction: column;
-    align-items: center;
-    padding: 3em 1em;
-  }
-  .feature {
-    min-width: 80%;
-    max-width: 400px;
-  }
+/* NB: This CSS file LACKS styles for .terms-page, .terms-content, .toc etc.
+   Those pages will require additional styling. */
 
-  /* Adjust content page padding */
-  .hero.terms-page {
-      padding: 1.5em;
-      margin: 2em auto;
-  }
-  .terms-page h1 { font-size: 2em; }
-   .terms-content h2 { font-size: 1.4em; }
-
-  /* Adjust navbar padding */
-   .navbar { padding: 12px 16px; }
-   .navbar nav a { margin: 0 10px; /* Reduce spacing */ }
-}
+/* NB: This CSS file LACKS specific responsive rules beyond flex-wrap. */
