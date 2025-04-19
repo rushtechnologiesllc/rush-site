@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rush - Campus Ticket Exchange</title>
-  <!-- Link to external stylesheet -->
+  <!-- Link to the single, corrected external stylesheet -->
   <link rel="stylesheet" href="style.css" />
+  <!-- NO INLINE STYLE BLOCK NEEDED HERE ANYMORE -->
 </head>
 <body>
-  <!-- Header -->
+  <!-- Header: Appearance is controlled by style.css -->
   <header class="navbar">
     <nav>
       <a href="index.html">Home</a>
@@ -18,18 +19,19 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero Section: Uses rules from style.css -->
   <section class="hero">
-    <div class="hero-text">
-      <h1>Rush</h1>
+    <div class="hero-text"> <!-- Centered via absolute positioning in style.css -->
+      <h1>Rush</h1> <!-- Color/size from style.css -->
       <p>The fastest way to buy and sell tickets on campus.</p>
-      <div class="cta-wrapper">
+      <div class="cta-wrapper"> <!-- Wrapper helps manage spacing if needed -->
+        <!-- CTA button uses styles from style.css -->
         <a href="YOUR_APP_STORE_LINK_HERE" class="cta" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
       </div>
     </div>
   </section>
 
-  <!-- Features Section -->
+  <!-- Features Section: Uses rules from style.css -->
   <section class="features">
     <div class="feature" data-animate>
       <img src="assets/feature1.png" alt="Instant Payments Icon">
@@ -42,13 +44,14 @@
       <p>Only verified students can post or buy — real people, no bots.</p>
     </div>
     <div class="feature" data-animate>
+      <!-- Ensure path/filename is correct -->
       <img src="assets/feature3.jpeg" alt="Campus Focused Icon">
       <h2>Campus First</h2>
       <p>Events, tickets, and connections — all centered around your school.</p>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer: Uses rules from style.css -->
   <footer>
     <p>© 2025 Rush Technologies LLC — All rights reserved</p>
   </footer>
