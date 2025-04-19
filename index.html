@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rush - Campus Ticket Exchange</title>
-  <!-- Link to the single, corrected external stylesheet -->
+  <!-- Link to the single external stylesheet -->
   <link rel="stylesheet" href="style.css" />
-  <!-- NO INLINE STYLE BLOCK NEEDED HERE ANYMORE -->
 </head>
 <body>
   <!-- Header: Appearance is controlled by style.css -->
@@ -19,44 +18,47 @@
     </nav>
   </header>
 
-  <!-- Hero Section: Uses rules from style.css -->
-  <section class="hero">
-    <div class="hero-text"> <!-- Centered via absolute positioning in style.css -->
-      <h1>Rush</h1> <!-- Color/size from style.css -->
-      <p>The fastest way to buy and sell tickets on campus.</p>
-      <div class="cta-wrapper"> <!-- Wrapper helps manage spacing if needed -->
-        <!-- CTA button uses styles from style.css -->
-        <a href="YOUR_APP_STORE_LINK_HERE" class="cta" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
-      </div>
-    </div>
-  </section>
+  <!-- Main Content Area for Index -->
+  <main class="index-content">
+    <!-- Page Heading -->
+    <h2 class="page-heading">
+      The fastest way to buy and sell tickets on campus.
+    </h2>
 
-  <!-- Features Section: Uses rules from style.css -->
+    <!-- Call to Action Button -->
+    <div class="cta-wrapper">
+      <a href="YOUR_APP_STORE_LINK_HERE" class="cta index-cta" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
+    </div>
+  </main>
+
+  <!-- Features Section -->
   <section class="features">
     <div class="feature" data-animate>
+      <!-- Confirm path -->
       <img src="assets/feature1.png" alt="Instant Payments Icon">
       <h2>Instant Payments</h2>
       <p>Send and receive money without the hassle. No middlemen.</p>
     </div>
     <div class="feature" data-animate>
+      <!-- Confirm path -->
       <img src="assets/feature2.png" alt="Verified Student Icon">
       <h2>Student Verified</h2>
       <p>Only verified students can post or buy — real people, no bots.</p>
     </div>
     <div class="feature" data-animate>
-      <!-- Ensure path/filename is correct -->
+      <!-- Confirm path - .jpeg or .png? -->
       <img src="assets/feature3.jpeg" alt="Campus Focused Icon">
       <h2>Campus First</h2>
       <p>Events, tickets, and connections — all centered around your school.</p>
     </div>
   </section>
 
-  <!-- Footer: Uses rules from style.css -->
+  <!-- Footer -->
   <footer>
     <p>© 2025 Rush Technologies LLC — All rights reserved</p>
   </footer>
 
-  <!-- Animations -->
+  <!-- Animations Script -->
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
