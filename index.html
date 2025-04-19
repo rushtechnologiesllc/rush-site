@@ -3,156 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rush - Campus Ticket Exchange</title> <!-- More descriptive title -->
-  <!-- Link to your external stylesheet -->
+  <title>Rush - Campus Ticket Exchange</title>
+  <!-- Link to external stylesheet -->
   <link rel="stylesheet" href="style.css" />
-  <!-- Inline styles for this specific page layout -->
+  <!-- Inline styles for index.html layout -->
   <style>
-    /* Global Resets & Professional Defaults */
     html {
         scroll-behavior: smooth;
     }
     body {
-      background-color: #0a0a0a; /* Slightly off-black for depth */
-      color: #e0e0e0; /* Light gray default text */
+      background-color: #0a0a0a;
+      color: #e0e0e0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.6;
       margin: 0;
       padding: 0;
-      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-x: hidden;
     }
 
-    /* Styles for Header (.navbar) are assumed to be in style.css for consistency */
-    /* Ensure header has some z-index if it might overlap */
     .navbar {
-        position: relative; /* Changed from sticky if style.css handles it */
+        position: relative;
         z-index: 100;
-        /* Styles like background, padding etc. should be in style.css */
+        /* Navbar appearance comes from style.css */
     }
 
     /* Hero Section Styling */
     .hero {
+      /* These rules center the .hero-text block horizontally/vertically */
       display: flex;
       flex-direction: column;
-      align-items: center; /* Centers .hero-text block */
+      align-items: center;
       justify-content: center;
-      min-height: 70vh; /* Adjust height as needed */
+      /* This rule centers the text *inside* the .hero block */
+      text-align: center;
+
+      min-height: 70vh;
       padding: 4em 2em;
-      text-align: center; /* Centers text inside .hero-text */
-      position: relative; /* Needed for the overlay */
-      background-color: #111; /* Fallback color */
-
-      /* --- CONFIRM & REPLACE THIS BACKGROUND --- */
-      /* Make sure this path is correct relative to your HTML file! */
-      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('assets/campus_event_blur.jpg'); /* Example - REPLACE with your actual image URL */
+      position: relative;
+      background-color: #111; /* Fallback */
+      /* --- CONFIRM & REPLACE BACKGROUND --- */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('assets/campus_event_blur.jpg'); /* Example - REPLACE! */
       /* --- END REPLACE --- */
-
       background-size: cover;
       background-position: center center;
-      background-attachment: fixed; /* Creates a parallax-like effect */
-      color: #ffffff; /* Ensure text is white */
-      overflow: hidden; /* Clip any pseudo-elements */
+      background-attachment: fixed;
+      color: #ffffff;
+      overflow: hidden;
     }
 
     .hero-text {
-      position: relative; /* Ensure text is above the overlay */
+      position: relative;
       z-index: 2;
-      max-width: 650px; /* Limit text width */
+      max-width: 650px;
+      /* Text alignment inherited from .hero's text-align: center */
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
       font-weight: 700;
       margin-bottom: 0.3em;
-      letter-spacing: -1px; /* Subtle tightening */
-      color: #fff; /* Explicit white */
+      letter-spacing: -1px;
+      color: #fff;
+      /* No text-align needed here, inherits from parent */
     }
 
     .hero p {
-      font-size: clamp(1rem, 2.5vw, 1.25rem); /* Responsive font size */
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
       margin-bottom: 1.8em;
-      color: #d0d0d0; /* Slightly dimmer than h1 */
-      max-width: 500px; /* Limit paragraph width */
+      color: #d0d0d0;
+      max-width: 500px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    /* === CORRECTED CTA Button Style === */
+    /* Correct CTA Button Style */
     .hero .cta {
       display: inline-block;
-      background-color: #000000; /* Black background */
-      color: #ffffff;           /* White text */
+      background-color: #000000;
+      color: #ffffff;
       padding: 12px 25px;
       font-size: 1rem;
       font-weight: 600;
       text-decoration: none;
       border-radius: 8px;
-      border: 2px solid #ffffff; /* White outline */
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease; /* Added transitions */
-      box-shadow: none; /* Remove previous shadow */
-      cursor: pointer; /* Indicate it's clickable */
+      border: 2px solid #ffffff;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+      box-shadow: none;
+      cursor: pointer;
     }
-
     .hero .cta:hover {
-      background-color: #222222; /* Slightly lighter black on hover */
-      color: #ffffff;           /* Keep text white */
-      border-color: #cccccc;     /* Slightly dimmer border on hover */
-      transform: translateY(-2px); /* Slight lift */
-      text-decoration: none; /* Ensure no underline on hover */
+      background-color: #222222;
+      color: #ffffff;
+      border-color: #cccccc;
+      transform: translateY(-2px);
+      text-decoration: none;
     }
-    /* === END CORRECTED CTA Style === */
-
 
     /* Features Section Styling */
     .features {
       display: flex;
       justify-content: space-around;
-      flex-wrap: wrap; /* Allow wrapping on smaller screens */
-      padding: 4em 2em; /* More padding */
-      max-width: 1100px; /* Limit overall width */
-      margin: 0 auto; /* Center the section */
-      gap: 2em; /* Space between feature boxes */
-      background-color: #0a0a0a; /* Match body */
+      flex-wrap: wrap;
+      padding: 4em 2em;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 2em;
+      background-color: #0a0a0a;
     }
-
     .feature {
-      flex: 1; /* Allow flex items to grow/shrink */
-      min-width: 280px; /* Minimum width before wrapping */
-      max-width: 320px; /* Maximum width */
+      flex: 1;
+      min-width: 280px;
+      max-width: 320px;
       text-align: center;
       padding: 1.5em;
-      background-color: #1c1c1e; /* Slightly lighter card background */
+      background-color: #1c1c1e;
       border-radius: 10px;
-      border: 1px solid #2c2c2e; /* Subtle border */
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition */
+      border: 1px solid #2c2c2e;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .feature:hover {
-        transform: translateY(-5px); /* Lift effect on hover */
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Shadow on hover */
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
     }
-
     .feature img {
-      max-width: 80px; /* Adjust size as needed */
+      max-width: 80px;
       height: auto;
       margin-bottom: 1.5em;
-      display: inline-block; /* Helps with potential alignment issues */
+      display: inline-block;
     }
-
     .feature h2 {
       font-size: 1.4rem;
       font-weight: 600;
-      color: #f5f5f7; /* Brighter text for headings */
+      color: #f5f5f7;
       margin-bottom: 0.6em;
     }
-
     .feature p {
       font-size: 0.95rem;
-      color: #a0a0a5; /* Softer text for paragraph */
+      color: #a0a0a5;
       line-height: 1.5;
     }
 
-    /* Animation Styling (from original script) */
+    /* Animation Styling */
     [data-animate] {
       opacity: 0;
       transform: translateY(30px);
@@ -162,20 +153,18 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* Stagger animation delays (optional but nice) */
     .feature:nth-child(1) { transition-delay: 0.1s; }
     .feature:nth-child(2) { transition-delay: 0.2s; }
-    .feature:nth-child(3) { transition-delay: 0.3s; } /* Make sure this selector targets the 3rd feature div correctly */
-
+    .feature:nth-child(3) { transition-delay: 0.3s; }
 
     /* Footer Styling */
     footer {
       text-align: center;
       padding: 2em 1em;
-      margin-top: 3em; /* Space above footer */
-      background-color: #1c1c1e; /* Match feature card background */
-      border-top: 1px solid #2c2c2e; /* Subtle top border */
-      color: #888; /* Dimmer text */
+      margin-top: 3em;
+      background-color: #1c1c1e;
+      border-top: 1px solid #2c2c2e;
+      color: #888;
       font-size: 0.9rem;
     }
 
@@ -183,18 +172,17 @@
     @media (max-width: 768px) {
       .hero {
         min-height: 60vh;
-        background-attachment: scroll; /* Fixed attachment often problematic on mobile */
+        background-attachment: scroll;
       }
       .features {
-        flex-direction: column; /* Stack features vertically */
-        align-items: center; /* Center stacked items */
+        flex-direction: column;
+        align-items: center;
       }
       .feature {
-        min-width: 80%; /* Allow features to take more width */
+        min-width: 80%;
         max-width: 400px;
       }
     }
-
   </style>
 </head>
 <body>
@@ -213,7 +201,6 @@
     <div class="hero-text">
       <h1>Rush</h1>
       <p>The fastest way to buy and sell tickets on campus.</p>
-      <!-- Make sure the href points to your App Store link -->
       <a href="YOUR_APP_STORE_LINK_HERE" class="cta" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
     </div>
   </section>
@@ -221,29 +208,18 @@
   <!-- Features Section -->
   <section class="features">
     <div class="feature" data-animate>
-      <!-- Verify path and filename -->
       <img src="assets/feature1.png" alt="Instant Payments Icon">
       <h2>Instant Payments</h2>
       <p>Send and receive money without the hassle. No middlemen.</p>
     </div>
     <div class="feature" data-animate>
-      <!-- Verify path and filename -->
       <img src="assets/feature2.png" alt="Verified Student Icon">
       <h2>Student Verified</h2>
       <p>Only verified students can post or buy — real people, no bots.</p>
     </div>
     <div class="feature" data-animate>
-      <!-- ========================================= -->
-      <!-- !!! FIGURE 3 IMAGE - DEBUGGING AREA !!! -->
-      <!-- ========================================= -->
-      <!-- 1. Is the FOLDER exactly named 'assets' (lowercase)? -->
-      <!-- 2. Is the FILE exactly named 'feature3.png' (lowercase)? -->
-      <!-- 3. Is index.html in the directory *directly above* the 'assets' folder? -->
-      <!-- Example: YourProject/index.html and YourProject/assets/feature3.png -->
-      <!-- 4. Did you do a HARD REFRESH (Ctrl+Shift+R or Cmd+Shift+R)? -->
-      <!-- 5. Check Browser Dev Tools (F12) > Network Tab for 404 errors on feature3.png -->
+      <!-- Confirm this path/filename is EXACTLY correct -->
       <img src="assets/feature3.jpeg" alt="Campus Focused Icon">
-      <!-- ========================================= -->
       <h2>Campus First</h2>
       <p>Events, tickets, and connections — all centered around your school.</p>
     </div>
@@ -260,11 +236,9 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
-          // Optional: Unobserve after animating once
-          // observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 }); // Trigger animation when 10% visible
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
   </script>
