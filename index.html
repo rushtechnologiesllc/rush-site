@@ -5,9 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rush - Campus Ticket Exchange</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Center the intro-block vertically & horizontally */
+    .index-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+      padding: 4em 2em;
+      background-color: #0a0a0a;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .intro-block {
+      max-width: 650px;
+    }
+
+    .intro-block h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      margin-bottom: 0.5em;
+    }
+
+    .page-subheading {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      margin-bottom: 1.5em;
+    }
+
+    .cta-wrapper .cta {
+      display: inline-block;
+      background-color: #000000;
+      color: #ffffff;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      border: 2px solid #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    .cta-wrapper .cta:hover {
+      background-color: #222222;
+      border-color: #cccccc;
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body>
-  <!-- Header: Appearance is controlled by style.css -->
+  <!-- Header -->
   <header class="navbar">
     <nav>
       <a href="index.html">Home</a>
@@ -17,9 +63,8 @@
     </nav>
   </header>
 
-  <!-- Main Content Area for Index -->
+  <!-- Main Content -->
   <main class="index-content">
-    <!-- Wrapper for Intro Content -->
     <div class="intro-block">
       <h1>Rush</h1>
       <p class="page-subheading">
@@ -31,7 +76,7 @@
     </div>
   </main>
 
-  <!-- Features Section -->
+  <!-- Features -->
   <section class="features">
     <div class="feature" data-animate>
       <img src="assets/feature1.png" alt="Instant Payments Icon">
@@ -55,7 +100,7 @@
     <p>© 2025 Rush Technologies LLC — All rights reserved</p>
   </footer>
 
-  <!-- Animations Script -->
+  <!-- Animation Script -->
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
