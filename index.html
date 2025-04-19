@@ -3,10 +3,203 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rush</title>
+  <title>Rush - Campus Ticket Exchange</title> <!-- More descriptive title -->
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Global Resets & Professional Defaults */
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+      background-color: #0a0a0a; /* Slightly off-black for depth */
+      color: #e0e0e0; /* Light gray default text */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    /* Styles for Header (.navbar) are assumed to be in style.css for consistency */
+    /* Ensure header has some z-index if it might overlap */
+    .navbar {
+        position: relative;
+        z-index: 100;
+    }
+
+    /* Hero Section Styling */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh; /* Adjust height as needed */
+      padding: 4em 2em;
+      text-align: center;
+      position: relative; /* Needed for the overlay */
+      background-color: #111; /* Fallback color */
+
+      /* --- REPLACE THIS BACKGROUND --- */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('YOUR_BACKGROUND_IMAGE_URL_HERE.jpg'); /* Gradient overlay + Image URL */
+      /* Example Placeholder Gradient (remove or comment out when using image): */
+      /* background-image: linear-gradient(135deg, #1a1a1a 0%, #000000 100%); */
+      /* --- END REPLACE --- */
+
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed; /* Creates a parallax-like effect */
+      color: #ffffff; /* Ensure text is white */
+      overflow: hidden; /* Clip any pseudo-elements */
+    }
+
+    /* Optional: Add a pseudo-element overlay if the gradient isn't enough */
+    /* .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5); /* Adjust darkness */
+      /* z-index: 1; */
+    /* } */
+
+    .hero-text {
+      position: relative; /* Ensure text is above the overlay */
+      z-index: 2;
+      max-width: 650px; /* Limit text width */
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
+      font-weight: 700;
+      margin-bottom: 0.3em;
+      letter-spacing: -1px; /* Subtle tightening */
+      color: #fff; /* Explicit white */
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.25rem); /* Responsive font size */
+      margin-bottom: 1.8em;
+      color: #d0d0d0; /* Slightly dimmer than h1 */
+      max-width: 500px; /* Limit paragraph width */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero .cta {
+      display: inline-block;
+      background-color: #007aff; /* Apple blue */
+      color: #ffffff;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+    }
+
+    .hero .cta:hover {
+      background-color: #005ecb; /* Darker blue on hover */
+      transform: translateY(-2px); /* Slight lift */
+      box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+    }
+
+    /* Features Section Styling */
+    .features {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap; /* Allow wrapping on smaller screens */
+      padding: 4em 2em; /* More padding */
+      max-width: 1100px; /* Limit overall width */
+      margin: 0 auto; /* Center the section */
+      gap: 2em; /* Space between feature boxes */
+      background-color: #0a0a0a; /* Match body */
+    }
+
+    .feature {
+      flex: 1; /* Allow flex items to grow/shrink */
+      min-width: 280px; /* Minimum width before wrapping */
+      max-width: 320px; /* Maximum width */
+      text-align: center;
+      padding: 1.5em;
+      background-color: #1c1c1e; /* Slightly lighter card background */
+      border-radius: 10px;
+      border: 1px solid #2c2c2e; /* Subtle border */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition */
+    }
+
+    .feature:hover {
+        transform: translateY(-5px); /* Lift effect on hover */
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Shadow on hover */
+    }
+
+    .feature img {
+      max-width: 80px; /* Adjust size as needed */
+      height: auto;
+      margin-bottom: 1.5em;
+    }
+
+    .feature h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #f5f5f7; /* Brighter text for headings */
+      margin-bottom: 0.6em;
+    }
+
+    .feature p {
+      font-size: 0.95rem;
+      color: #a0a0a5; /* Softer text for paragraph */
+      line-height: 1.5;
+    }
+
+    /* Animation Styling (from original script) */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    [data-animate].show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Stagger animation delays (optional but nice) */
+    .feature:nth-child(1) { transition-delay: 0.1s; }
+    .feature:nth-child(2) { transition-delay: 0.2s; }
+    .feature:nth-child(3) { transition-delay: 0.3s; }
+
+
+    /* Footer Styling */
+    footer {
+      text-align: center;
+      padding: 2em 1em;
+      margin-top: 3em; /* Space above footer */
+      background-color: #1c1c1e; /* Match feature card background */
+      border-top: 1px solid #2c2c2e; /* Subtle top border */
+      color: #888; /* Dimmer text */
+      font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 60vh;
+      }
+      .features {
+        flex-direction: column; /* Stack features vertically */
+        align-items: center; /* Center stacked items */
+      }
+      .feature {
+        min-width: 80%; /* Allow features to take more width */
+        max-width: 400px;
+      }
+    }
+
+  </style>
 </head>
 <body>
+  <!-- Header: Assumes style.css provides the correct styling -->
   <header class="navbar">
     <nav>
       <a href="index.html">Home</a>
@@ -16,46 +209,50 @@
     </nav>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
-    <img src="assets/hero.jpg" alt="App Hero" class="hero-image" />
     <div class="hero-text">
       <h1>Rush</h1>
       <p>The fastest way to buy and sell tickets on campus.</p>
-      <a href="#" class="cta">Download on the App Store</a>
+      <a href="#" class="cta">Download on the App Store</a> <!-- Update href when ready -->
     </div>
   </section>
 
+  <!-- Features Section -->
   <section class="features">
     <div class="feature" data-animate>
-      <img src="assets/feature1.png" alt="Feature 1" />
+      <img src="assets/feature1.png" alt="Instant Payments Icon"> <!-- Improved Alt Text -->
       <h2>Instant Payments</h2>
       <p>Send and receive money without the hassle. No middlemen.</p>
     </div>
     <div class="feature" data-animate>
-      <img src="assets/feature2.png" alt="Feature 2" />
+      <img src="assets/feature2.png" alt="Verified Student Icon"> <!-- Improved Alt Text -->
       <h2>Student Verified</h2>
       <p>Only verified students can post or buy — real people, no bots.</p>
     </div>
     <div class="feature" data-animate>
-      <img src="assets/feature3.png" alt="Feature 3" />
+      <img src="assets/feature3.png" alt="Campus Focused Icon"> <!-- Improved Alt Text -->
       <h2>Campus First</h2>
       <p>Events, tickets, and connections — all centered around your school.</p>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Rush — All rights reserved</p>
+    <p>© 2025 Rush Technologies LLC — All rights reserved</p> <!-- Added LLC -->
   </footer>
 
+  <!-- Script for animations -->
   <script>
-    // Animate on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
+          // Optional: Unobserve after animating once
+          // observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1 }); // Trigger animation when 10% visible
 
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
   </script>
