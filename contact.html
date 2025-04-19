@@ -5,19 +5,164 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Us - Rush</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Apply smooth scrolling if needed (mostly for internal links) */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Basic styles for theme and professional structure (Consistent with terms/privacy.html) */
+    body {
+      background-color: #000; /* Black background */
+      color: #fff; /* White text */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* Apple-like font stack */
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Styles for Header are assumed to be in style.css for consistency */
+
+    /* Main content area styling */
+    .hero.terms-page { /* Reusing class for consistency */
+      max-width: 800px; /* Constrain width for readability */
+      margin: 3em auto; /* Center content block with top/bottom margin */
+      padding: 2em 3em; /* Add horizontal padding */
+      background-color: #0a0a0a; /* Very dark gray for content area */
+      border: 1px solid #222; /* Subtle border */
+      border-radius: 8px; /* Slightly rounded corners */
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+      min-height: 40vh; /* Ensure content area has some minimum height */
+    }
+
+    .terms-page h1 {
+      font-size: 2.4em; /* Large main title */
+      font-weight: 600;
+      text-align: left; /* Left align heading */
+      margin-bottom: 1em; /* Space below heading */
+      color: #fff;
+    }
+
+    /* No last-updated needed for contact page */
+
+    .terms-content h2 {
+      font-size: 1.6em; /* Section headings */
+      font-weight: 600;
+      margin-top: 2em; /* Space above sections */
+      margin-bottom: 1em;
+      padding-bottom: 0.4em;
+      border-bottom: 1px solid #444; /* Separator line */
+      color: #eee;
+      text-align: left; /* Ensure left alignment */
+    }
+
+    .terms-content p,
+    .terms-content li {
+      font-size: 1em; /* Slightly larger text for contact page might be nice */
+      margin-bottom: 1.2em; /* Consistent paragraph spacing */
+      color: #ccc; /* Softer white for readability */
+      text-align: left; /* Ensure left alignment */
+    }
+
+    .terms-content ul,
+    .terms-content ol {
+      margin-left: 0; /* Remove default browser indent */
+      padding-left: 1.8em; /* Control list indentation */
+      margin-bottom: 1.2em;
+      text-align: left;
+    }
+
+    .terms-content li {
+      margin-bottom: 0.6em; /* Spacing between list items */
+    }
+
+    /* Link Styling (consistent with TOC links) */
+    .terms-content a {
+      color: #aaccff; /* Lighter blue for links */
+      text-decoration: none;
+      transition: color 0.2s ease, text-decoration 0.2s ease;
+    }
+    .terms-content a:hover,
+    .terms-content a:focus {
+      color: #fff; /* White on hover/focus */
+      text-decoration: underline;
+    }
+
+    /* Ensure placeholders are noticeable */
+    .placeholder-text {
+      font-style: italic;
+      color: #ffcc00; /* Highlight placeholders */
+      background-color: rgba(255, 204, 0, 0.1); /* Subtle background highlight */
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      display: inline; /* Apply only to the text block */
+    }
+
+    /* Specific styles for contact details if needed */
+    .contact-info p {
+        margin-bottom: 0.5em; /* Tighter spacing for address lines */
+    }
+
+  </style>
 </head>
 <body>
-  <header>
+  <!-- Header: Assumes style.css provides the correct styling -->
+  <header class="navbar">
     <nav>
       <a href="index.html">Home</a>
-      <a href="terms.html">Terms of Service</a>
-      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="contact.html">Contact</a> <!-- Ensure 'Contact' link is present -->
     </nav>
   </header>
 
-  <main class="hero">
+  <main class="hero terms-page"> <!-- Reusing class for consistency -->
     <h1>Contact Us</h1>
-    <p>For questions, email us at <a href="mailto:support@getrushnow.com" style="color:#fff;">support@getrushnow.com</a>.</p>
+
+    <article class="terms-content">
+
+      <p>We're here to help and answer any questions you might have. We look forward to hearing from you!</p>
+
+      <h2 id="get-in-touch">Get in Touch</h2>
+
+      <p>The best way to reach us is by email. Whether you have a question about the app, need assistance with a transaction, or just want to provide feedback, please don't hesitate to send us a message.</p>
+
+      <div class="contact-info">
+          <p>
+              <strong>Email:</strong> <a href="mailto:support@getrushnow.com">support@getrushnow.com</a>
+          </p>
+          <p>
+              <strong>Response Time:</strong> We strive to respond to all inquiries within <span class="placeholder-text">(e.g., 24-48 business hours)</span>. Please note that response times may vary during peak periods or holidays.
+          </p>
+      </div>
+
+      <h2 id="mailing-address">Mailing Address</h2>
+      <p>For formal correspondence, you can reach us via post at our company address:</p>
+
+      <div class="contact-info">
+          <p>
+              Rush Technologies LLC<br>
+              <span class="placeholder-text">(Your Company Street Address)</span><br>
+              <span class="placeholder-text">(City, State, Zip Code)</span><br>
+              United States
+          </p>
+      </div>
+
+       <!-- Optional: Add a section about specific support channels if needed -->
+       <!--
+       <h2 id="app-support">In-App Support</h2>
+       <p>For issues directly related to your account or a specific transaction within the Rush app, you may find faster assistance through <span class="placeholder-text">(mention in-app support feature, if applicable)</span>.</p>
+       -->
+
+    </article>
   </main>
+
+  <!-- Optional: Add a footer if it's consistent with other pages -->
+  <!--
+  <footer>
+    <p>© 2025 Rush — All rights reserved</p>
+  </footer>
+  -->
+
 </body>
 </html>
