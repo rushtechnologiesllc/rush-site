@@ -7,19 +7,19 @@ html {
 
 body {
   margin: 0;
-  background: #000; /* Black background */
-  color: #fff;      /* White base text */
+  background: #000;
+  color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
 }
 a {
   text-decoration: none;
-  color: #aaa; /* Default link color */
+  color: #aaa;
    transition: color 0.2s ease;
 }
 a:hover {
-  color: #fff; /* Default link hover color */
+  color: #fff;
 }
 
 /* ========================================= */
@@ -49,39 +49,55 @@ a:hover {
 /* Index Page Specific Content Area          */
 /* ========================================= */
 .index-content {
-    padding: 4em 2em 4em 2em; /* Increased bottom padding for gap */
-    text-align: center; /* Center all inline/inline-block children */
+    padding: 4em 2em 2em 2em; /* Keep top/side padding, bottom padding adjusted */
+    /* Use Flexbox to center the .intro-block */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically (optional, needs height) */
+    min-height: 30vh; /* Give some height for vertical centering */
     background-color: #000;
+    /* border: 1px dashed lime; */ /* DEBUG BORDER */
 }
 
-/* Style for the reintroduced H1 */
-.index-content h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Large, responsive size */
+/* Wrapper for intro content */
+.intro-block {
+    text-align: center; /* Center text within this block */
+    max-width: 650px; /* Limit width */
+    width: 100%; /* Take available width */
+    /* border: 1px dashed red; */ /* DEBUG BORDER */
+}
+
+
+/* Style for the H1 inside intro block */
+.intro-block h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 700;
     color: #fff;
-    margin-top: 0; /* Remove default top margin */
-    margin-bottom: 0.3em; /* Space below H1 */
-    margin-left: auto; /* Ensure centered */
+    margin-top: 0;
+    margin-bottom: 0.3em;
+    margin-left: auto;
     margin-right: auto;
     letter-spacing: -1px;
-    max-width: 800px; /* Optional: constrain width */
+    /* border: 1px dashed cyan; */ /* DEBUG BORDER */
 }
 
 /* Style for the paragraph below H1 */
 .page-subheading {
-    font-size: clamp(1rem, 2.5vw, 1.25rem); /* Responsive size */
-    font-weight: 400; /* Regular weight */
-    color: #d0d0d0; /* Slightly dimmer than white */
-    margin-top: 0; /* Remove default top margin */
-    margin-bottom: 1.8em; /* Space below subheading */
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 400;
+    color: #d0d0d0;
+    margin-top: 0;
+    margin-bottom: 1.8em;
     max-width: 600px;
     margin-left: auto;
-    margin-right: auto; /* Center block */
+    margin-right: auto;
+    /* border: 1px dashed yellow; */ /* DEBUG BORDER */
 }
 
 .cta-wrapper {
-  margin-top: 20px; /* Space above button */
-  /* Centering happens via text-align on parent */
+  margin-top: 20px;
+  /* border: 1px dashed magenta; */ /* DEBUG BORDER */
 }
 
 /* Index Page CTA Button */
@@ -116,12 +132,12 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* Padding top adjusted, more space now comes from .index-content padding-bottom */
-  padding: 2em 2em 4em 2em;
+  padding: 4em 2em 4em 2em; /* Added consistent vertical padding */
   background: #000;
   gap: 3em;
   max-width: 1100px;
-  margin: 0 auto;
+  margin: 0 auto; /* Center the section block */
+  margin-top: 4em; /* <<< EXPLICIT GAP ADDED HERE */
 }
 .feature {
   flex: 1 1 280px;
@@ -247,9 +263,9 @@ footer {
 /* Responsive adjustments                    */
 /* ========================================= */
 @media (max-width: 768px) {
-  .index-content h1 { font-size: 2.2rem; } /* Adjust H1 size */
-  .page-subheading { font-size: 1.1rem; } /* Adjust subheading size */
-  .features { flex-direction: column; align-items: center; padding: 2em 1em 3em 1em; gap: 2.5em;}
+  .index-content h1 { font-size: 2.0rem; } /* Adjust H1 size further */
+  .page-subheading { font-size: 1.0rem; }
+  .features { flex-direction: column; align-items: center; padding: 2em 1em 3em 1em; gap: 2.5em; margin-top: 2em;}
   .feature { min-width: 80%; max-width: 350px; flex-basis: auto; }
   .hero.terms-page { padding: 1.5em; margin: 2em auto; }
   .terms-page h1 { font-size: 2em; }
