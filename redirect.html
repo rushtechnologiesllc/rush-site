@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Redirecting to Rush App...</title>
+  <title>Redirecting...</title>
   <script>
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");
     const type = params.get("type");
 
     if (token && type) {
-      // Construct the deep link with fragment
-      const appLink = `rushapp://reset#access_token=${token}&type=${type}`;
-      window.location.href = appLink;
+      const deepLink = `rushapp://reset#access_token=${token}&type=${type}`;
+      window.location.replace(deepLink);
     } else {
       document.body.innerHTML = "<h2 style='color:white;'>Invalid or missing token.</h2>";
     }
