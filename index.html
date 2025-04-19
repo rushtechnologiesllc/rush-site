@@ -29,7 +29,7 @@
 
     /* Hero Section Styling */
     .hero {
-      /* Flex rules center the .hero-text block horizontally */
+      /* Flex rules center the .hero-text block */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -55,34 +55,50 @@
       position: relative;
       z-index: 2;
       max-width: 650px;
-      width: 90%; /* Ensure it takes up space if max-width isn't hit */
-      /* ===== ADDED EXPLICIT CENTERING RULE ===== */
-      text-align: center; /* Force text alignment for content inside this div */
-      /* Adding auto margins as another way to ensure block centering */
+      /* width: 90%; */ /* REMOVED - Let flexbox handle block centering */
+      /* Ensure text inside is centered */
+      text-align: center;
+      /* Ensure block itself is centered (redundant with flex on parent, but safe) */
       margin-left: auto;
       margin-right: auto;
+      /* Add padding reset just in case */
+      padding-left: 0;
+      padding-right: 0;
     }
 
+    /* === FORCING H1 CENTERING === */
     .hero h1 {
       font-size: clamp(2.5rem, 6vw, 4.5rem);
       font-weight: 700;
-      margin-top: 0; /* Reset potential top margin */
-      margin-bottom: 0.3em;
-      margin-left: auto; /* Ensure h1 itself doesn't have odd margins */
-      margin-right: auto;
       letter-spacing: -1px;
       color: #fff;
-      /* No text-align needed here if .hero-text has it */
+
+      /* 1. Treat as block */
+      display: block;
+      /* 2. Set width based on content */
+      width: fit-content; /* Prevents taking full width */
+      /* 3. Center the block using auto margins */
+      margin-left: auto;
+      margin-right: auto;
+      /* 4. Explicitly center text *within* the h1 block */
+      text-align: center;
+      /* 5. Reset padding/margins that might interfere */
+      padding: 0;
+      margin-top: 0;
+      margin-bottom: 0.3em; /* Keep desired bottom margin */
     }
+    /* === END H1 CENTERING FORCE === */
+
 
     .hero p {
       font-size: clamp(1rem, 2.5vw, 1.25rem);
       margin-bottom: 1.8em;
       color: #d0d0d0;
       max-width: 500px;
-      /* Auto L/R margins already present */
+      /* Centering via auto margins */
       margin-left: auto;
       margin-right: auto;
+      /* Inherits text-align: center from .hero-text */
     }
 
     /* Correct CTA Button Style */
@@ -207,9 +223,7 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <!-- .hero styles use flex align-items: center to center this div -->
-    <!-- .hero styles use text-align: center to center inline text -->
-    <div class="hero-text"> <!-- Explicit text-align: center added inline -->
+    <div class="hero-text">
       <h1>Rush</h1>
       <p>The fastest way to buy and sell tickets on campus.</p>
       <a href="YOUR_APP_STORE_LINK_HERE" class="cta" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
@@ -229,7 +243,7 @@
       <p>Only verified students can post or buy — real people, no bots.</p>
     </div>
     <div class="feature" data-animate>
-      <!-- Assuming feature3.jpeg is the correct, working path now -->
+      <!-- Confirm path/filename -->
       <img src="assets/feature3.jpeg" alt="Campus Focused Icon">
       <h2>Campus First</h2>
       <p>Events, tickets, and connections — all centered around your school.</p>
