@@ -2,25 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Redirecting to Rush App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting to Rush App...</title>
   <script>
-    window.onload = function () {
-      const params = new URLSearchParams(window.location.search);
-      const token = params.get('token');
-      const type = params.get('type');
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+    const type = params.get("type");
 
-      if (token && type === 'recovery') {
-        const deepLink = `rushapp://reset#access_token=${token}&type=${type}`;
-        console.log("Redirecting to:", deepLink);
-        window.location.href = deepLink;
-      } else {
-        document.body.innerHTML = "<h2>Invalid reset link.</h2>";
-      }
+    if (token && type) {
+      // Construct the deep link with fragment
+      const appLink = `rushapp://reset#access_token=${token}&type=${type}`;
+      window.location.href = appLink;
+    } else {
+      document.body.innerHTML = "<h2 style='color:white;'>Invalid or missing token.</h2>";
     }
   </script>
 </head>
-<body style="background:#000;color:#fff;text-align:center;padding:2em;">
-  <h2>Redirecting you to the Rush app…</h2>
+<body style="background:black; color:white; text-align:center;">
+  <h2>Redirecting to the Rush app...</h2>
 </body>
 </html>
