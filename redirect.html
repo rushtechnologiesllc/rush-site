@@ -3,18 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <title>Redirecting...</title>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
-    const type = params.get("type");
+ <script>
+  // 1) parse anything after the '#'
+  const hash = window.location.hash.substring(1)
+  const params = new URLSearchParams(hash)
+  const accessToken  = params.get("access_token")
+  const refreshToken = params.get("refresh_token")
+  const type         = params.get("type")
 
-    if (token && type) {
-      const deepLink = `rushapp://reset#access_token=${token}&type=${type}`;
-      window.location.replace(deepLink);
-    } else {
-      document.body.innerHTML = "<h2 style='color:white;'>Invalid or missing token.</h2>";
-    }
-  </script>
+  if (accessToken && refreshToken && type === "recovery") {
+    // 2) deep‑link into the app with the full tokens
+    window.location.replace(
+      `rushapp://reset#access_token=${accessToken}` +
+      `&refresh_token=${refreshToken}&type=${type}`
+    )
+  } else {
+    document.body.innerHTML =
+      "<h2 style='color:white;'>Invalid or missing token.</h2>"
+  }
+</script>
+
 </head>
 <body style="background:black; color:white; text-align:center;">
   <h2>Redirecting to the Rush app...</h2>
