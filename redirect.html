@@ -3,28 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <title>Redirecting...</title>
- <script>
-  // 1) parse anything after the '#'
-  const hash = window.location.hash.substring(1)
-  const params = new URLSearchParams(hash)
-  const accessToken  = params.get("access_token")
-  const refreshToken = params.get("refresh_token")
-  const type         = params.get("type")
+  <style>
+    body { background:#000; color:#fff; text-align:center; font-family:Arial,sans-serif; padding-top:50px; }
+    a { color:#0af; text-decoration:underline; }
+  </style>
+  <script>
+    // Grab everything after the “#”
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    const accessToken  = params.get("access_token");
+    const refreshToken = params.get("refresh_token");
+    const type         = params.get("type");
 
-  if (accessToken && refreshToken && type === "recovery") {
-    // 2) deep‑link into the app with the full tokens
-    window.location.replace(
-      `rushapp://reset#access_token=${accessToken}` +
-      `&refresh_token=${refreshToken}&type=${type}`
-    )
-  } else {
-    document.body.innerHTML =
-      "<h2 style='color:white;'>Invalid or missing token.</h2>"
-  }
-</script>
-
+    if (accessToken && refreshToken && type === "recovery") {
+      // Deep‑link into the app, with both tokens URL‑encoded
+      const link =
+        `rushapp://reset#` +
+        `access_token=${encodeURIComponent(accessToken)}` +
+        `&refresh_token=${encodeURIComponent(refreshToken)}` +
+        `&type=${encodeURIComponent(type)}`;
+      window.location.replace(link);
+    } else {
+      document.body.innerHTML = 
+        "<h2>Invalid or missing token.</h2>" +
+        "<p>If you clicked the link more than once, it may have expired.</p>";
+    }
+  </script>
 </head>
-<body style="background:black; color:white; text-align:center;">
-  <h2>Redirecting to the Rush app...</h2>
+<body>
+  <h2>Redirecting to the Rush app…</h2>
+  <p>If you’re not redirected, <a id="fallback" href="#">tap here</a>.</p>
+  <script>
+    // fallback link if automatic replace fails
+    document.getElementById("fallback").onclick = () => {
+      const hash = window.location.hash.substring(1);
+      document.getElementById("fallback").href = `rushapp://reset#${hash}`;
+    };
+  </script>
 </body>
 </html>
