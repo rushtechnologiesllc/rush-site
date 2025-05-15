@@ -23,7 +23,6 @@
         `&refresh_token=${encodeURIComponent(refreshToken)}` +
         `&type=${encodeURIComponent(type)}`;
       setTimeout(() => window.location.replace(link), 100);
-      window.location.replace(link);
     } else {
       document.body.innerHTML = 
         "<h2>Invalid or missing token.</h2>" +
