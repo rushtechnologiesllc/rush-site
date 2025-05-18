@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Open Resale Event</title>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    if (!id) location.href = "https://apps.apple.com/app/idYOUR_APP_ID";
+
+    // Try opening the app
+    location.href = `rushapp://resale-event?id=${id}`;
+
+    // Fallback to App Store
+    setTimeout(() => {
+      location.href = "https://apps.apple.com/app/idYOUR_APP_ID";
+    }, 1000);
+  </script>
+</head>
+<body style="background:black;color:white;display:flex;justify-content:center;align-items:center;height:100vh;">
+  <h2>Opening Resale Event in Rush…</h2>
+</body>
+</html>
+
