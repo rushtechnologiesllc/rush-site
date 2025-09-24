@@ -4,21 +4,40 @@
   <meta charset="UTF-8">
   <title>Open Resale Event</title>
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-    if (!id) location.href = "https://apps.apple.com/app/id6744488351";
+    function isIOSiPhone() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      return /iPhone/i.test(ua);
+    }
 
-    // Try opening the app
-    location.href = `rushapp://resale-event?id=${id}`;
+    window.onload = () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
 
-    // Fallback to App Store
-    setTimeout(() => {
-      location.href = "https://apps.apple.com/app/id6744488351";
-    }, 1000);
+      if (!id) {
+        window.location.href = "https://apps.apple.com/app/id6744488351";
+        return;
+      }
+
+      if (isIOSiPhone()) {
+        // Try opening the app
+        window.location.href = `rushapp://resale-event?id=${id}`;
+
+        // Fallback to App Store
+        setTimeout(() => {
+          window.location.href = "https://apps.apple.com/app/id6744488351";
+        }, 1000);
+      } else {
+        // Not on iPhone → show message
+        document.body.innerHTML = `
+          <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;background:black;color:white;text-align:center;padding:20px;">
+            <h2>Please open this link on an iPhone</h2>
+          </div>
+        `;
+      }
+    };
   </script>
 </head>
 <body style="background:black;color:white;display:flex;justify-content:center;align-items:center;height:100vh;">
   <h2>Opening Resale Event in Rush…</h2>
 </body>
 </html>
-
