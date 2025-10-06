@@ -71,7 +71,7 @@
         The fastest way to buy and sell tickets on campus.
       </p>
       <div class="cta-wrapper">
-        <a href="YOUR_APP_STORE_LINK_HERE" class="cta index-cta" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
+        <a id="download-link" href="#" class="cta index-cta">Download on the App Store</a>
       </div>
     </div>
   </main>
@@ -112,5 +112,44 @@
 
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
   </script>
+
+  <script>
+  // Detect if user is on an iPhone or iPad
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+  const appId = "id6744488351";
+  const appStoreLink = `https://apps.apple.com/app/${appId}`;
+  const deepLink = "rushapp://"; // Change this if your custom URL scheme is different
+
+  const downloadLink = document.getElementById("download-link");
+
+  if (isIOS) {
+    // Try to open app; if fails, redirect to App Store
+    downloadLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      const now = Date.now();
+      window.location = deepLink;
+
+      // If app not opened in 2 seconds, go to App Store
+      setTimeout(() => {
+        if (Date.now() - now < 2000) {
+          window.location = appStoreLink;
+        }
+      }, 1500);
+    });
+  } else {
+    // Replace main content with message for non-iOS users
+    const main = document.querySelector(".index-content");
+    main.innerHTML = `
+      <div class="intro-block">
+        <h1>Rush</h1>
+        <p class="page-subheading" style="max-width: 600px; margin: 0 auto; font-size: 1.2rem;">
+          Rush is available only on iPhone. Please visit this page on your iPhone to download the app from the App Store.
+        </p>
+      </div>
+    `;
+  }
+</script>
+
 </body>
 </html>
