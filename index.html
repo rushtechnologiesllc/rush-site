@@ -119,37 +119,30 @@
 
   const appId = "id6744488351";
   const appStoreLink = `https://apps.apple.com/app/${appId}`;
-  const deepLink = "rushapp://"; // Change this if your custom URL scheme is different
+  const deepLink = "rushapp://"; // your custom URL scheme
+  const notIOSPage = "not-ios.html";
 
   const downloadLink = document.getElementById("download-link");
 
-  if (isIOS) {
-    // Try to open app; if fails, redirect to App Store
-    downloadLink.addEventListener("click", (e) => {
-      e.preventDefault();
+  downloadLink.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (isIOS) {
+      // iPhone/iPad — try to open app, fallback to App Store
       const now = Date.now();
       window.location = deepLink;
-
-      // If app not opened in 2 seconds, go to App Store
       setTimeout(() => {
         if (Date.now() - now < 2000) {
           window.location = appStoreLink;
         }
       }, 1500);
-    });
-  } else {
-    // Replace main content with message for non-iOS users
-    const main = document.querySelector(".index-content");
-    main.innerHTML = `
-      <div class="intro-block">
-        <h1>Rush</h1>
-        <p class="page-subheading" style="max-width: 600px; margin: 0 auto; font-size: 1.2rem;">
-          Rush is available only on iPhone. Please visit this page on your iPhone to download the app from the App Store.
-        </p>
-      </div>
-    `;
-  }
+    } else {
+      // Not iPhone — go to info page
+      window.location.href = notIOSPage;
+    }
+  });
 </script>
+
 
 </body>
 </html>
