@@ -30,12 +30,18 @@
     }
 
     .intro-block img.logo {
-      max-width: 400px; /* Make logo way bigger */
-      margin-bottom: 1.5em; /* Reduce gap to button */
+      max-width: 400px; /* Bigger logo */
+      margin-bottom: 0.5em; /* Minimal spacing below logo */
     }
 
-    .cta-wrapper {
-      margin-bottom: 1em; /* Small spacing between button and tagline */
+    .intro-block .tagline {
+      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.5em; /* Minimal spacing to button */
+      text-transform: uppercase;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
 
     .cta-wrapper .cta {
@@ -55,16 +61,6 @@
       background-color: #222222;
       border-color: #cccccc;
       transform: translateY(-2px);
-    }
-
-    .intro-block .tagline {
-      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-      color: #ffffff;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-top: 0.5em;
-      text-transform: uppercase;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
 
     /* Features */
@@ -147,10 +143,10 @@
   <main class="index-content">
     <div class="intro-block">
       <img src="logos.jpeg" alt="Campus Ticket Exchange Logo" class="logo" />
+      <p class="tagline">Verified student ticket resale</p>
       <div class="cta-wrapper">
         <a id="download-link" href="#" class="cta index-cta">Download on the App Store</a>
       </div>
-      <p class="tagline">Verified student ticket resale</p>
     </div>
   </main>
 
@@ -182,7 +178,7 @@
       <a href="terms.html">Terms</a>
       <a href="privacy.html">Privacy</a>
     </div>
-    <p class="copyright">© 2025 Campus Ticket Exchange LLC — All rights reserved</p>
+    <p class="copyright">© 2025 Rush Technologies LLC — All rights reserved</p>
   </footer>
 
   <!-- Animation Script -->
@@ -227,4 +223,5 @@
 
 </body>
 </html>
+
 
