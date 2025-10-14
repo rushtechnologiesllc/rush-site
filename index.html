@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rush - Campus Ticket Exchange</title>
+  <title>Campus Ticket Exchange</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     /* Center the intro-block vertically & horizontally */
@@ -16,20 +16,22 @@
       background-color: #0a0a0a;
       color: #ffffff;
       text-align: center;
+      flex-direction: column;
     }
 
     .intro-block {
       max-width: 650px;
     }
 
-    .intro-block h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      margin-bottom: 0.5em;
+    .intro-block img.logo {
+      max-width: 250px;
+      margin-bottom: 1em;
     }
 
-    .page-subheading {
+    .intro-block .tagline {
       font-size: clamp(1rem, 2.5vw, 1.25rem);
-      margin-bottom: 1.5em;
+      margin-bottom: 2em;
+      color: #cccccc;
     }
 
     .cta-wrapper .cta {
@@ -50,26 +52,38 @@
       border-color: #cccccc;
       transform: translateY(-2px);
     }
+
+    /* Footer styling */
+    footer {
+      margin-top: 4em;
+      padding: 2em 1em;
+      background-color: #0a0a0a;
+      color: #888888;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid #222222;
+    }
+
+    footer img.logo {
+      max-width: 120px;
+      margin-bottom: 0.5em;
+    }
+
+    footer .tagline {
+      display: block;
+      margin-bottom: 1em;
+      color: #cccccc;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="navbar">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
   <!-- Main Content -->
   <main class="index-content">
     <div class="intro-block">
-      <h1>Rush</h1>
-      <p class="page-subheading">
-        The fastest way to buy and sell tickets on campus.
-      </p>
+      <img src="logo.png" alt="Campus Ticket Exchange Logo" class="logo" />
+      <p class="tagline">Verified student ticket resale</p>
       <div class="cta-wrapper">
         <a id="download-link" href="#" class="cta index-cta">Download on the App Store</a>
       </div>
@@ -97,7 +111,9 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Rush Technologies LLC — All rights reserved</p>
+    <img src="logo.png" alt="Campus Ticket Exchange Logo" class="logo" />
+    <span class="tagline">Verified student ticket resale</span>
+    <p>© 2025 Campus Ticket Exchange LLC — All rights reserved</p>
   </footer>
 
   <!-- Animation Script -->
@@ -114,35 +130,33 @@
   </script>
 
   <script>
-  // Detect if user is on an iPhone or iPad
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    // Detect if user is on an iPhone or iPad
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-  const appId = "id6744488351";
-  const appStoreLink = `https://apps.apple.com/app/${appId}`;
-  const deepLink = "rushapp://"; // your custom URL scheme
-  const notIOSPage = "not-ios.html";
+    const appId = "id6744488351";
+    const appStoreLink = `https://apps.apple.com/app/${appId}`;
+    const deepLink = "rushapp://"; // your custom URL scheme
+    const notIOSPage = "not-ios.html";
 
-  const downloadLink = document.getElementById("download-link");
+    const downloadLink = document.getElementById("download-link");
 
-  downloadLink.addEventListener("click", (e) => {
-    e.preventDefault();
+    downloadLink.addEventListener("click", (e) => {
+      e.preventDefault();
 
-    if (isIOS) {
-      // iPhone/iPad — try to open app, fallback to App Store
-      const now = Date.now();
-      window.location = deepLink;
-      setTimeout(() => {
-        if (Date.now() - now < 2000) {
-          window.location = appStoreLink;
-        }
-      }, 1500);
-    } else {
-      // Not iPhone — go to info page
-      window.location.href = notIOSPage;
-    }
-  });
-</script>
-
+      if (isIOS) {
+        const now = Date.now();
+        window.location = deepLink;
+        setTimeout(() => {
+          if (Date.now() - now < 2000) {
+            window.location = appStoreLink;
+          }
+        }, 1500);
+      } else {
+        window.location.href = notIOSPage;
+      }
+    });
+  </script>
 
 </body>
 </html>
+
