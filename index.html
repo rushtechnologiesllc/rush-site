@@ -30,20 +30,12 @@
     }
 
     .intro-block img.logo {
-      max-width: 250px;
-      margin-bottom: 1em;
+      max-width: 400px; /* Make logo way bigger */
+      margin-bottom: 1.5em; /* Reduce gap to button */
     }
 
-    .intro-block .tagline {
-      font-size: clamp(1.25rem, 3vw, 1.5rem);
-      margin-bottom: 2em;
-      color: #f0f0f0;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, #ff7e5f, #feb47b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .cta-wrapper {
+      margin-bottom: 1em; /* Small spacing between button and tagline */
     }
 
     .cta-wrapper .cta {
@@ -63,6 +55,16 @@
       background-color: #222222;
       border-color: #cccccc;
       transform: translateY(-2px);
+    }
+
+    .intro-block .tagline {
+      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 0.5em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
 
     /* Features */
@@ -109,7 +111,7 @@
       margin-bottom: 1em;
       font-weight: 600;
       font-size: 1rem;
-      color: #f0f0f0;
+      color: #ffffff;
       letter-spacing: 0.5px;
     }
 
@@ -145,10 +147,10 @@
   <main class="index-content">
     <div class="intro-block">
       <img src="logos.jpeg" alt="Campus Ticket Exchange Logo" class="logo" />
-      <p class="tagline">Verified student ticket resale</p>
       <div class="cta-wrapper">
         <a id="download-link" href="#" class="cta index-cta">Download on the App Store</a>
       </div>
+      <p class="tagline">Verified student ticket resale</p>
     </div>
   </main>
 
