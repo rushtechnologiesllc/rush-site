@@ -5,16 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Campus Ticket Exchange</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Center the intro-block vertically & horizontally */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0a0a0a;
+      color: #ffffff;
+    }
+
+    /* Main Content */
     .index-content {
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 70vh;
       padding: 4em 2em;
-      background-color: #0a0a0a;
-      color: #ffffff;
       text-align: center;
       flex-direction: column;
     }
@@ -29,9 +35,15 @@
     }
 
     .intro-block .tagline {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
       margin-bottom: 2em;
-      color: #cccccc;
+      color: #f0f0f0;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .cta-wrapper .cta {
@@ -53,14 +65,37 @@
       transform: translateY(-2px);
     }
 
-    /* Footer styling */
+    /* Features */
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+      padding: 4em 2em;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .feature img {
+      max-width: 80px;
+      margin-bottom: 1em;
+    }
+
+    .feature h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5em;
+    }
+
+    .feature p {
+      font-size: 1rem;
+      color: #cccccc;
+    }
+
+    /* Footer */
     footer {
-      margin-top: 4em;
-      padding: 2em 1em;
       background-color: #0a0a0a;
       color: #888888;
       text-align: center;
-      font-size: 0.9rem;
+      padding: 3em 2em 2em;
       border-top: 1px solid #222222;
     }
 
@@ -72,8 +107,35 @@
     footer .tagline {
       display: block;
       margin-bottom: 1em;
-      color: #cccccc;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #f0f0f0;
+      letter-spacing: 0.5px;
+    }
+
+    footer .footer-links {
+      margin: 1.5em 0;
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+      flex-wrap: wrap;
+    }
+
+    footer .footer-links a {
+      color: #888888;
+      text-decoration: none;
       font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    footer .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    footer p.copyright {
+      margin-top: 1em;
+      font-size: 0.85rem;
+      color: #666666;
     }
   </style>
 </head>
@@ -113,7 +175,12 @@
   <footer>
     <img src="logos.jpg" alt="Campus Ticket Exchange Logo" class="logo" />
     <span class="tagline">Verified student ticket resale</span>
-    <p>© 2025 Campus Ticket Exchange LLC — All rights reserved</p>
+    <div class="footer-links">
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+    <p class="copyright">© 2025 Campus Ticket Exchange LLC — All rights reserved</p>
   </footer>
 
   <!-- Animation Script -->
@@ -129,20 +196,19 @@
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
   </script>
 
+  <!-- Download Button Script -->
   <script>
-    // Detect if user is on an iPhone or iPad
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
     const appId = "id6744488351";
     const appStoreLink = `https://apps.apple.com/app/${appId}`;
-    const deepLink = "rushapp://"; // your custom URL scheme
+    const deepLink = "rushapp://"; 
     const notIOSPage = "not-ios.html";
 
     const downloadLink = document.getElementById("download-link");
 
     downloadLink.addEventListener("click", (e) => {
       e.preventDefault();
-
       if (isIOS) {
         const now = Date.now();
         window.location = deepLink;
