@@ -195,34 +195,27 @@
   </script>
 
   <!-- Download Button Script -->
-  <script>
+  <!-- Download Button Script -->
+<script>
+  const appId = "id6744488351"; 
+  const appStoreLink = `https://apps.apple.com/us/app/${appId}`;
+  const notIOSPage = "not-ios.html";
+  const downloadLink = document.getElementById("download-link");
+
+  downloadLink.addEventListener("click", (e) => {
+    e.preventDefault();
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-    const appId = "id6744488351";
-    const appStoreLink = `https://apps.apple.com/us/app/${appId}`;
-    const deepLink = "rushapp://"; 
-    const notIOSPage = "not-ios.html";
+    if (isIOS) {
+      // ✅ Always go straight to App Store
+      window.location.href = appStoreLink;
+    } else {
+      // Optional: send non-iOS users to another page
+      window.location.href = notIOSPage;
+    }
+  });
+</script>
 
-    const downloadLink = document.getElementById("download-link");
-
-    downloadLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (isIOS) {
-        const now = Date.now();
-const iframe = document.createElement('iframe');
-iframe.style.display = 'none';
-iframe.src = deepLink;
-document.body.appendChild(iframe);
-        setTimeout(() => {
-          if (Date.now() - now < 2000) {
-            window.location = appStoreLink;
-          }
-        }, 1500);
-      } else {
-        window.location.href = notIOSPage;
-      }
-    });
-  </script>
 
 </body>
 </html>
