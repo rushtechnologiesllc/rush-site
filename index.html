@@ -39,7 +39,7 @@
       text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
     .cta-wrapper {
-      margin-bottom: 3.5em; /* Increased gap to promo module */
+      margin-bottom: 9em; /* MUCH bigger space to push stats below-the-fold */
     }
     .cta-wrapper .cta {
       display: inline-block;
@@ -74,7 +74,7 @@
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
-      /* Glass effect for Apple-inspired look: */
+      /* Glass effect */
       backdrop-filter: blur(16px) saturate(134%);
       border: 1.5px solid rgba(255,255,255,0.22);
     }
@@ -111,7 +111,6 @@
       box-shadow: 0 6px 22px rgba(2,9,30,0.26), 0 1px rgba(28,38,58,0.13);
       margin: 0 0.2em;
       border: 1.5px solid #303c53;
-      /* Glass effect */
       backdrop-filter: blur(7px) saturate(130%);
     }
     .promo-card .big-number {
@@ -136,7 +135,6 @@
       .promo-cards { flex-direction: column; gap: 1.3em; }
     }
 
-    /* Reviews Carousel Section */
     .reviews-section {
       background: linear-gradient(117deg, rgba(21,27,48,0.96) 8%, rgba(16,17,26,0.89) 91%);
       border-radius: 20px;
@@ -149,7 +147,6 @@
       align-items: center;
       position: relative;
       border: 1.5px solid rgba(255,255,255,0.11);
-      /* Glass effect */
       backdrop-filter: blur(14px) saturate(131%);
     }
     .reviews-title {
@@ -180,7 +177,6 @@
       align-items: flex-start;
       margin: 0 0.2em;
       border: 1.1px solid #29324a;
-      /* Glass effect */
       backdrop-filter: blur(5px) saturate(130%);
     }
     .review-card .review-text {
@@ -202,7 +198,6 @@
     @media(max-width: 700px) {
       .reviews-carousel { flex-direction: column; gap: 0.9em; }
     }
-    /* Features (kept from your original) */
     .features {
       display: flex;
       justify-content: center;
@@ -276,7 +271,11 @@
         <a id="download-link" href="#" class="cta index-cta">Download on the App Store</a>
       </div>
     </div>
-    <!-- Promo Section -->
+    <div id="promo-modules-anchor"></div>
+  </main>
+
+  <!-- Promo and Reviews Sections (conditionally rendered) -->
+  <div id="promo-reviews-wrapper" style="display:none;">
     <section class="promo-section">
       <div class="promo-title">Over 100k+ Tickets Transacted and Counting</div>
       <div class="promo-cards">
@@ -298,7 +297,6 @@
         </div>
       </div>
     </section>
-    <!-- Reviews Section -->
     <section class="reviews-section">
       <div class="reviews-title">Real Student Reviews</div>
       <div class="reviews-carousel">
@@ -320,7 +318,7 @@
         </div>
       </div>
     </section>
-  </main>
+  </div>
 
   <!-- Features -->
   <section class="features">
@@ -365,7 +363,7 @@
 
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
   </script>
-  <!-- Download Button Script -->
+  <!-- Download Button Script and PROMO/REVIEWS TOGGLE LOGIC-->
   <script>
     const appId = "id6744488351";
     const appStoreLink = `https://apps.apple.com/us/app/${appId}`;
@@ -378,6 +376,26 @@
         window.location.href = appStoreLink;
       } else {
         window.location.href = notIOSPage;
+      }
+    });
+
+    // GLOBAL TOGGLE (set to true to show, false to hide stats/reviews)
+    const SHOW_PROMO_MODULES = true;
+
+    // DOM logic for promo/reviews sections
+    window.addEventListener("DOMContentLoaded", function () {
+      var promoWrapper = document.getElementById("promo-reviews-wrapper");
+      if (SHOW_PROMO_MODULES) {
+        promoWrapper.style.display = "";
+        // Also, to make sure stats are visually below the fold, add a large invisible anchor
+        var anchor = document.getElementById("promo-modules-anchor");
+        // Remove any previous anchors
+        while (anchor.firstChild) anchor.removeChild(anchor.firstChild);
+        var hugeSpacer = document.createElement("div");
+        hugeSpacer.style.height = "12vh";
+        anchor.appendChild(hugeSpacer);
+      } else {
+        promoWrapper.style.display = "none";
       }
     });
   </script>
