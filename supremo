@@ -120,7 +120,8 @@
           <div style="text-align:right" class="muted">Ends: <strong>[Month End Date]</strong></div>
         </div>
 
-        <div class="qr">QR CODE / APP PREVIEW<br><span style="font-size:11px;margin-top:6px">Replace this box with your app download QR</span></div>
+        <img src="logos.jpeg" alt="Campus Ticket Exchange Logo" class="logo" />
+        /*<div class="qr">QR CODE / APP PREVIEW<br><span style="font-size:11px;margin-top:6px">Replace this box with your app download QR</span></div>*/
 
         <div style="margin-top:12px">
           <div style="font-weight:700;margin-bottom:6px">Quick steps to get started</div>
