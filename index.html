@@ -1,167 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RUSH: The Campus Ticket Exchange</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-            colors: {
-              border: "hsl(var(--border))",
-              input: "hsl(var(--input))",
-              ring: "hsl(var(--ring))",
-              background: "hsl(var(--background))",
-              foreground: "hsl(var(--foreground))",
-              primary: {
-                DEFAULT: "hsl(var(--primary))",
-                foreground: "hsl(var(--primary-foreground))",
-              },
-              secondary: {
-                DEFAULT: "hsl(var(--secondary))",
-                foreground: "hsl(var(--secondary-foreground))",
-              },
-              destructive: {
-                DEFAULT: "hsl(var(--destructive))",
-                foreground: "hsl(var(--destructive-foreground))",
-              },
-              muted: {
-                DEFAULT: "hsl(var(--muted))",
-                foreground: "hsl(var(--muted-foreground))",
-              },
-              accent: {
-                DEFAULT: "hsl(var(--accent))",
-                foreground: "hsl(var(--accent-foreground))",
-              },
-              popover: {
-                DEFAULT: "hsl(var(--popover))",
-                foreground: "hsl(var(--popover-foreground))",
-              },
-              card: {
-                DEFAULT: "hsl(var(--card))",
-                foreground: "hsl(var(--card-foreground))",
-              },
-            },
-            borderRadius: {
-              lg: "var(--radius)",
-              md: "calc(var(--radius) - 2px)",
-              sm: "calc(var(--radius) - 4px)",
-            },
-            keyframes: {
-              "accordion-down": {
-                from: { height: "0" },
-                to: { height: "var(--radix-accordion-content-height)" },
-              },
-              "accordion-up": {
-                from: { height: "var(--radix-accordion-content-height)" },
-                to: { height: "0" },
-              },
-              scroll: {
-                to: {
-                  transform: "translate(calc(-50% - 0.5rem))",
-                },
-              },
-            },
-            animation: {
-              "accordion-down": "accordion-down 0.2s ease-out",
-              "accordion-up": "accordion-up 0.2s ease-out",
-              scroll:
-                "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
-            },
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RUSH: The Campus Ticket Exchange</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Configuration & Styles -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            'scroll': 'scroll 40s linear infinite',
           },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            scroll: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' },
+            }
+          }
         },
-      };
-    </script>
-    <style>
-      :root {
-        --background: 0 0% 0%;
-        --foreground: 0 0% 98%; 
-        --card: 0 0% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 0 0% 3.9%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 0 0% 9%;
-        --secondary: 0 0% 14.9%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 0 0% 14.9%;
-        --muted-foreground: 0 0% 63.9%;
-        --accent: 0 0% 14.9%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 14.9%;
-        --input: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
-        --radius: 0.75rem;
-      }
-      
-      body {
-        background-color: #000;
-        color: #fff;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-      }
+      },
+    };
+  </script>
 
-      /* Custom scrollbar for Webkit */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0a0a0a;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #333;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #444;
-      }
-      
-      .glass-panel {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      
-      .text-gradient {
-        background: linear-gradient(to bottom, #ffffff 0%, #a1a1aa 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Glass Effect */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-      .text-gradient-gold {
-        background: linear-gradient(to right, #ffd86b, #7abfff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-    </style>
-  <script type="importmap">
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #444; }
+
+    /* Utility Classes for Animation */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .mask-image-linear-gradient {
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+  </style>
+<script type="importmap">
 {
   "imports": {
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
   }
 }
 </script>
 </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+<body class="relative min-h-screen selection:bg-white/20">
+
+  <!-- Ambient Background -->
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <div class="absolute top-[-10%] left-[20%] w-[40vw] h-[40vw] bg-blue-900/10 rounded-full blur-[120px] mix-blend-screen"></div>
+    <div class="absolute bottom-[10%] right-[10%] w-[30vw] h-[30vw] bg-purple-900/10 rounded-full blur-[100px] mix-blend-screen"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4 transition-all duration-700 transform translate-y-[-100px] opacity-0" id="navbar">
+    <div class="glass-panel rounded-full px-5 pl-6 py-3 flex items-center justify-between w-full max-w-[320px] shadow-2xl shadow-black/50 border border-white/10 bg-black/30">
+      <span class="font-bold tracking-tight text-lg text-white">RUSH</span>
+      <button onclick="handleDownload(event)" class="bg-white text-black px-5 py-2 rounded-full text-xs font-bold hover:bg-zinc-200 transition-all transform hover:scale-105">
+        Download
+      </button>
+    </div>
+  </nav>
+
+  <main class="relative z-10 flex flex-col items-center w-full max-w-[1440px] mx-auto px-6 sm:px-12">
+    
+    <!-- Hero Section -->
+    <section class="w-full flex flex-col items-center pt-40 pb-20 text-center relative z-10">
+      
+      <!-- Logo -->
+      <div class="mb-10 relative group animate-on-scroll">
+        <div class="absolute -inset-1 bg-gradient-to-b from-white/20 to-transparent rounded-[2.5rem] blur-md opacity-50"></div>
+        <img src="logos.jpeg" alt="Rush App Icon" class="w-40 h-40 md:w-52 md:h-52 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative z-10 object-cover border border-white/10" />
+      </div>
+
+      <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-6 text-white max-w-5xl mx-auto animate-on-scroll" style="transition-delay: 200ms;">
+        The Campus <br /> 
+        <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">Ticket Exchange</span>
+      </h1>
+
+      <p class="text-xl md:text-2xl text-zinc-400 mb-12 font-normal tracking-wide max-w-2xl leading-relaxed animate-on-scroll" style="transition-delay: 400ms;">
+        Verified student ticket resale. Secure, fast, and exclusively for your campus.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center gap-6 animate-on-scroll" style="transition-delay: 600ms;">
+        <button onclick="handleDownload(event)" class="relative group overflow-hidden rounded-full bg-white text-black px-10 py-4 text-lg font-semibold hover:scale-105 transition-transform duration-300">
+           <span class="relative z-10">Download on App Store</span>
+           <div class="absolute inset-0 bg-gradient-to-r from-zinc-200 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </button>
+      </div>
+    </section>
+
+    <div class="h-24 md:h-32"></div>
+
+    <!-- Stats Section -->
+    <section class="w-full">
+      <div class="text-center mb-16 animate-on-scroll">
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">Trusted by Students.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        <!-- Stat 1 -->
+        <div class="col-span-1 md:col-span-2 relative group bg-zinc-900/20 border border-white/5 rounded-3xl p-10 flex flex-col items-center justify-center text-center overflow-hidden hover:bg-white/5 transition-colors duration-500 animate-on-scroll">
+          <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div class="relative z-10">
+            <div class="text-5xl md:text-7xl font-bold text-white mb-2 tracking-tighter">100k+</div>
+            <div class="text-zinc-500 font-medium text-lg">Tickets Transacted</div>
+          </div>
+        </div>
+        <!-- Stat 2 -->
+        <div class="col-span-1 relative group bg-zinc-900/20 border border-white/5 rounded-3xl p-10 flex flex-col items-center justify-center text-center overflow-hidden hover:bg-white/5 transition-colors duration-500 animate-on-scroll" style="transition-delay: 100ms;">
+          <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div class="relative z-10">
+            <div class="text-5xl md:text-7xl font-bold text-white mb-2 tracking-tighter">100%</div>
+            <div class="text-zinc-500 font-medium text-lg">Secure</div>
+          </div>
+        </div>
+        <!-- Stat 3 -->
+        <div class="col-span-1 relative group bg-zinc-900/20 border border-white/5 rounded-3xl p-10 flex flex-col items-center justify-center text-center overflow-hidden hover:bg-white/5 transition-colors duration-500 animate-on-scroll">
+          <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div class="relative z-10">
+            <div class="text-5xl md:text-7xl font-bold text-white mb-2 tracking-tighter">5+</div>
+            <div class="text-zinc-500 font-medium text-lg">Universities</div>
+          </div>
+        </div>
+        <!-- Stat 4 -->
+        <div class="col-span-1 md:col-span-2 relative group bg-zinc-900/20 border border-white/5 rounded-3xl p-10 flex flex-col items-center justify-center text-center overflow-hidden hover:bg-white/5 transition-colors duration-500 animate-on-scroll" style="transition-delay: 100ms;">
+          <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div class="relative z-10">
+            <div class="text-5xl md:text-7xl font-bold text-white mb-2 tracking-tighter">50k+</div>
+            <div class="text-zinc-500 font-medium text-lg">Happy Students</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="h-24 md:h-40"></div>
+
+    <!-- Features Section -->
+    <section class="w-full max-w-6xl mx-auto px-4">
+      <div class="mb-16 text-center animate-on-scroll">
+         <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-6">
+          Built for speed. <br/> <span class="text-zinc-500">Designed for trust.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Feature 1 -->
+        <div class="col-span-1 md:col-span-2 lg:col-span-2 bg-zinc-900/30 border border-white/10 rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[400px] relative overflow-hidden group hover:border-white/20 transition-colors animate-on-scroll">
+          <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] -mr-20 -mt-20 pointer-events-none"></div>
+          <div class="relative z-10">
+            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 text-white">
+              <i data-lucide="zap"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-white mb-4">Instant Payments.</h3>
+            <p class="text-zinc-400 text-lg max-w-md leading-relaxed">
+              Send and receive money instantly. No middlemen, no waiting periods. Funds go straight to your account the moment the ticket is transferred.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="col-span-1 bg-zinc-900/30 border border-white/10 rounded-3xl p-8 flex flex-col justify-between min-h-[400px] relative overflow-hidden group hover:border-white/20 transition-colors animate-on-scroll" style="transition-delay: 100ms;">
+           <div class="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+           <div>
+            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 text-white">
+              <i data-lucide="shield-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-3">Student Verified.</h3>
+            <p class="text-zinc-400 leading-relaxed">
+              Our rigorous verification ensures you only deal with real students from your campus. No bots. No scalpers.
+            </p>
+           </div>
+        </div>
+
+         <!-- Feature 3 -->
+         <div class="col-span-1 lg:col-span-3 bg-zinc-900/30 border border-white/10 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden hover:border-white/20 transition-colors animate-on-scroll" style="transition-delay: 200ms;">
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="w-full">
+            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 text-white">
+              <i data-lucide="graduation-cap"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-white mb-4">Campus First.</h3>
+            <p class="text-zinc-400 text-lg leading-relaxed max-w-3xl">
+              Tailored specifically for your university. We filter out the noise so you only see events and tickets relevant to your school community.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="h-24 md:h-40"></div>
+
+    <!-- Reviews Section -->
+    <section class="w-full overflow-hidden py-20 relative animate-on-scroll">
+      <div class="text-center mb-16 px-4">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white tracking-tight">Real Student Reviews</h2>
+        <p className="text-zinc-500 text-lg">Hear from the community.</p>
+      </div>
+
+      <!-- Masks -->
+      <div class="absolute top-0 left-0 h-full w-24 md:w-48 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none"></div>
+      <div class="absolute top-0 right-0 h-full w-24 md:w-48 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none"></div>
+
+      <div class="flex overflow-hidden gap-6 mask-image-linear-gradient">
+        <div class="flex gap-6 pl-6 animate-scroll w-max">
+          <!-- Review Items Repeated for seamless loop -->
+          <div class="bg-zinc-900/40 backdrop-blur-md p-8 rounded-3xl w-[320px] md:w-[400px] flex flex-col justify-between border border-white/5 hover:border-white/20 transition-colors">
+            <p class="text-lg text-zinc-200 font-medium mb-8 leading-relaxed">"Rush made buying event tickets way less stressful—no scams. Super fast & easy!"</p>
+            <div class="flex flex-col"><span class="font-bold text-white text-lg">Maya</span><span class="text-sm text-zinc-500 font-medium">Ohio State</span></div>
+          </div>
+          <div class="bg-zinc-900/40 backdrop-blur-md p-8 rounded-3xl w-[320px] md:w-[400px] flex flex-col justify-between border border-white/5 hover:border-white/20 transition-colors">
+            <p class="text-lg text-zinc-200 font-medium mb-8 leading-relaxed">"Got my concert tickets instantly and connected with another student. Love the clean design!"</p>
+            <div class="flex flex-col"><span class="font-bold text-white text-lg">Chase</span><span class="text-sm text-zinc-500 font-medium">NYU</span></div>
+          </div>
+          <div class="bg-zinc-900/40 backdrop-blur-md p-8 rounded-3xl w-[320px] md:w-[400px] flex flex-col justify-between border border-white/5 hover:border-white/20 transition-colors">
+            <p class="text-lg text-zinc-200 font-medium mb-8 leading-relaxed">"The best way to sell my game day tickets. Payout was instant right to my account."</p>
+            <div class="flex flex-col"><span class="font-bold text-white text-lg">Alice</span><span class="text-sm text-zinc-500 font-medium">USC</span></div>
+          </div>
+          <div class="bg-zinc-900/40 backdrop-blur-md p-8 rounded-3xl w-[320px] md:w-[400px] flex flex-col justify-between border border-white/5 hover:border-white/20 transition-colors">
+            <p class="text-lg text-zinc-200 font-medium mb-8 leading-relaxed">"All my friends use Rush—it’s trusted on my campus."</p>
+            <div class="flex flex-col"><span class="font-bold text-white text-lg">Chris</span><span class="text-sm text-zinc-500 font-medium">Boston College</span></div>
+          </div>
+           <div class="bg-zinc-900/40 backdrop-blur-md p-8 rounded-3xl w-[320px] md:w-[400px] flex flex-col justify-between border border-white/5 hover:border-white/20 transition-colors">
+            <p class="text-lg text-zinc-200 font-medium mb-8 leading-relaxed">"Finally an app that actually verifies students. Felt so much safer."</p>
+            <div class="flex flex-col"><span class="font-bold text-white text-lg">Sarah</span><span class="text-sm text-zinc-500 font-medium">UCLA</span></div>
+          </div>
+          
+          <!-- Duplicate for Loop -->
+          <div class="bg-zinc-900/40 backdrop-blur-md p-8 rounded-3xl w-[320px] md:w-[400px] flex flex-col justify-between border border-white/5 hover:border-white/20 transition-colors">
+            <p class="text-lg text-zinc-200 font-medium mb-8 leading-relaxed">"Rush made buying event tickets way less stressful—no scams. Super fast & easy!"</p>
+            <div class="flex flex-col"><span class="font-bold text-white text-lg">Maya</span><span class="text-sm text-zinc-500 font-medium">Ohio State</span></div>
+          </div>
+          <div class="bg-zinc-900/40 backdrop-blur-md p-8 rounded-3xl w-[320px] md:w-[400px] flex flex-col justify-between border border-white/5 hover:border-white/20 transition-colors">
+            <p class="text-lg text-zinc-200 font-medium mb-8 leading-relaxed">"Got my concert tickets instantly and connected with another student. Love the clean design!"</p>
+            <div class="flex flex-col"><span class="font-bold text-white text-lg">Chase</span><span class="text-sm text-zinc-500 font-medium">NYU</span></div>
+          </div>
+          <div class="bg-zinc-900/40 backdrop-blur-md p-8 rounded-3xl w-[320px] md:w-[400px] flex flex-col justify-between border border-white/5 hover:border-white/20 transition-colors">
+            <p class="text-lg text-zinc-200 font-medium mb-8 leading-relaxed">"The best way to sell my game day tickets. Payout was instant right to my account."</p>
+            <div class="flex flex-col"><span class="font-bold text-white text-lg">Alice</span><span class="text-sm text-zinc-500 font-medium">USC</span></div>
+          </div>
+          <div class="bg-zinc-900/40 backdrop-blur-md p-8 rounded-3xl w-[320px] md:w-[400px] flex flex-col justify-between border border-white/5 hover:border-white/20 transition-colors">
+            <p class="text-lg text-zinc-200 font-medium mb-8 leading-relaxed">"All my friends use Rush—it’s trusted on my campus."</p>
+            <div class="flex flex-col"><span class="font-bold text-white text-lg">Chris</span><span class="text-sm text-zinc-500 font-medium">Boston College</span></div>
+          </div>
+           <div class="bg-zinc-900/40 backdrop-blur-md p-8 rounded-3xl w-[320px] md:w-[400px] flex flex-col justify-between border border-white/5 hover:border-white/20 transition-colors">
+            <p class="text-lg text-zinc-200 font-medium mb-8 leading-relaxed">"Finally an app that actually verifies students. Felt so much safer."</p>
+            <div class="flex flex-col"><span class="font-bold text-white text-lg">Sarah</span><span class="text-sm text-zinc-500 font-medium">UCLA</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="h-20 md:h-24"></div>
+
+    <!-- CTA Section -->
+    <section class="w-full max-w-4xl mx-auto px-2 mb-32 text-center animate-on-scroll">
+      <div class="rounded-[3rem] p-12 md:p-20 relative overflow-hidden border border-white/10 bg-gradient-to-b from-zinc-900/40 to-black">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-blue-500/10 blur-[100px] pointer-events-none"></div>
+        
+        <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-6 relative z-10">
+          Join the Rush
+        </h2>
+        <p class="text-zinc-400 text-xl mb-10 relative z-10 max-w-xl mx-auto leading-relaxed">
+          Join thousands of students buying and selling tickets safely on campus.
+        </p>
+        <button onclick="handleDownload(event)" class="relative z-10 inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">
+          Get the App <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full border-t border-white/10 bg-zinc-950 py-12 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col items-center text-center">
+      
+      <div class="mb-8">
+        <img src="logos.jpeg" alt="Rush Logo" class="w-16 h-16 rounded-xl mx-auto mb-4 opacity-80 grayscale hover:grayscale-0 transition-all duration-500" />
+        <span class="text-zinc-500 font-medium text-sm tracking-wider uppercase">Verified student ticket resale</span>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-8 mb-8 text-sm text-zinc-400">
+        <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        <a href="terms.html" class="hover:text-white transition-colors">Terms</a>
+        <a href="privacy.html" class="hover:text-white transition-colors">Privacy</a>
+      </div>
+
+      <p class="text-xs text-zinc-700" id="copyright">
+        © 2025 Rush Technologies LLC — All rights reserved
+      </p>
+    </div>
+  </footer>
+
+  <!-- Logic Scripts -->
+  <script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // Update Year
+    document.getElementById('copyright').innerText = `© ${new Date().getFullYear()} Rush Technologies LLC — All rights reserved`;
+
+    // Navbar Animation
+    window.addEventListener('load', () => {
+        const navbar = document.getElementById('navbar');
+        setTimeout(() => {
+            navbar.style.transform = 'translateY(0)';
+            navbar.style.opacity = '1';
+        }, 100);
+    });
+
+    // Scroll Animations (Observer)
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // Only animate once
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+      observer.observe(el);
+    });
+
+    // Download Logic (iOS Redirect)
+    function handleDownload(e) {
+      e.preventDefault();
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      if (isIOS) {
+        window.location.href = "https://apps.apple.com/us/app/id6744488351";
+      } else {
+        window.location.href = "not-ios.html";
+      }
+    }
+  </script>
+</body>
 </html>
