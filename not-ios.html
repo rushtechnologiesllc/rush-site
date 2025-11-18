@@ -1,53 +1,28 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rush – iPhone Only</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rush - iOS Only</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      background-color: #0a0a0a;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 2em;
-    }
-    .container {
-      max-width: 600px;
-    }
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5em;
-    }
-    p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-    a.back {
-      display: inline-block;
-      margin-top: 2em;
-      padding: 10px 20px;
-      color: #ffffff;
-      border: 2px solid #ffffff;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    a.back:hover {
-      background-color: #222;
-    }
+    body { font-family: 'Inter', sans-serif; background-color: #000; color: white; }
   </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Rush is only available on iPhone</h1>
-    <p>Please visit this page on your iPhone to download the app from the App Store.</p>
-    <a href="index.html" class="back">← Go Back</a>
+<body class="flex items-center justify-center min-h-screen p-6 text-center">
+  <div class="max-w-md space-y-6">
+    <div class="w-24 h-24 bg-zinc-900 rounded-3xl mx-auto flex items-center justify-center border border-zinc-800">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
+    </div>
+    <h1 class="text-3xl font-bold tracking-tight">iOS Only</h1>
+    <p class="text-zinc-400 text-lg">
+      Rush is currently available exclusively on the Apple App Store. An Android version is coming soon!
+    </p>
+    <a href="index.html" class="inline-block mt-4 text-white underline underline-offset-4 hover:text-zinc-300">
+      Back to Home
+    </a>
   </div>
 </body>
 </html>
