@@ -1,403 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RUSH: The Campus Ticket Exchange</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #0a0a0a;
-      color: #ffffff;
-    }
-    .index-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 70vh;
-      padding: 4em 2em 2em 2em;
-      text-align: center;
-      flex-direction: column;
-    }
-    .intro-block {
-      max-width: 650px;
-    }
-    .intro-block img.logo {
-      max-width: 400px;
-      margin-bottom: 0.5em;
-    }
-    .intro-block .tagline {
-      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-      color: #ffffff;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 0.5em;
-      text-transform: uppercase;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    }
-    .cta-wrapper {
-      margin-bottom: 9em; /* MUCH bigger space to push stats below-the-fold */
-    }
-    .cta-wrapper .cta {
-      display: inline-block;
-      background-color: #000000;
-      color: #ffffff;
-      padding: 12px 25px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 8px;
-      border: 2px solid #ffffff;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 18px 0 rgba(60, 85, 182, 0.21);
-    }
-    .cta-wrapper .cta:hover {
-      background-color: #222222;
-      border-color: #cccccc;
-      transform: translateY(-2px);
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RUSH: The Campus Ticket Exchange</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              border: "hsl(var(--border))",
+              input: "hsl(var(--input))",
+              ring: "hsl(var(--ring))",
+              background: "hsl(var(--background))",
+              foreground: "hsl(var(--foreground))",
+              primary: {
+                DEFAULT: "hsl(var(--primary))",
+                foreground: "hsl(var(--primary-foreground))",
+              },
+              secondary: {
+                DEFAULT: "hsl(var(--secondary))",
+                foreground: "hsl(var(--secondary-foreground))",
+              },
+              destructive: {
+                DEFAULT: "hsl(var(--destructive))",
+                foreground: "hsl(var(--destructive-foreground))",
+              },
+              muted: {
+                DEFAULT: "hsl(var(--muted))",
+                foreground: "hsl(var(--muted-foreground))",
+              },
+              accent: {
+                DEFAULT: "hsl(var(--accent))",
+                foreground: "hsl(var(--accent-foreground))",
+              },
+              popover: {
+                DEFAULT: "hsl(var(--popover))",
+                foreground: "hsl(var(--popover-foreground))",
+              },
+              card: {
+                DEFAULT: "hsl(var(--card))",
+                foreground: "hsl(var(--card-foreground))",
+              },
+            },
+            borderRadius: {
+              lg: "var(--radius)",
+              md: "calc(var(--radius) - 2px)",
+              sm: "calc(var(--radius) - 4px)",
+            },
+            keyframes: {
+              "accordion-down": {
+                from: { height: "0" },
+                to: { height: "var(--radix-accordion-content-height)" },
+              },
+              "accordion-up": {
+                from: { height: "var(--radix-accordion-content-height)" },
+                to: { height: "0" },
+              },
+              scroll: {
+                to: {
+                  transform: "translate(calc(-50% - 0.5rem))",
+                },
+              },
+            },
+            animation: {
+              "accordion-down": "accordion-down 0.2s ease-out",
+              "accordion-up": "accordion-up 0.2s ease-out",
+              scroll:
+                "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --background: 0 0% 0%;
+        --foreground: 0 0% 98%; 
+        --card: 0 0% 3.9%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 3.9%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 0 0% 9%;
+        --secondary: 0 0% 14.9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 14.9%;
+        --muted-foreground: 0 0% 63.9%;
+        --accent: 0 0% 14.9%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 14.9%;
+        --input: 0 0% 14.9%;
+        --ring: 0 0% 83.1%;
+        --radius: 0.75rem;
+      }
+      
+      body {
+        background-color: #000;
+        color: #fff;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
 
-    /* Liquid glass module backgrounds and blur */
-    .promo-section {
-      margin-top: 0;
-      margin-bottom: 2em;
-      padding: 2.9em 1em 2.3em 1em;
-      border-radius: 28px;
-      background: linear-gradient(120deg, rgba(26,34,59,0.96) 12%, rgba(15,18,32,0.93) 88%);
-      box-shadow: 0 18px 50px 0 rgba(26,34,59,0.33), 0 1.2px 0px #fff1 inset;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      /* Glass effect */
-      backdrop-filter: blur(16px) saturate(134%);
-      border: 1.5px solid rgba(255,255,255,0.22);
-    }
-    .promo-title {
-      font-size: 2.43rem;
-      font-weight: 700;
-      text-align: center;
-      letter-spacing: 0.5px;
-      margin-bottom: 1.25em;
-      background: linear-gradient(90deg, #ffd86b 35%, #7abfff 100%);
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      filter: drop-shadow(0 3px 11px #141e34ad);
-    }
-    .promo-cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2em;
-      justify-content: center;
-      margin-bottom: 1em;
-      width: 100%;
-    }
-    .promo-card {
-      background: linear-gradient(109deg, rgba(26,34,59,0.66) 13%, rgba(16,17,26,0.88) 87%);
-      border-radius: 16px;
-      min-width: 170px;
-      flex: 1 1 170px;
-      max-width: 230px;
-      padding: 2em 1.25em 1.3em 1.25em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: 0 6px 22px rgba(2,9,30,0.26), 0 1px rgba(28,38,58,0.13);
-      margin: 0 0.2em;
-      border: 1.5px solid #303c53;
-      backdrop-filter: blur(7px) saturate(130%);
-    }
-    .promo-card .big-number {
-      font-size: 2.6rem;
-      font-weight: 800;
-      margin-bottom: 0.4em;
-      letter-spacing: 1px;
-      background: linear-gradient(90deg, #ffde7a, #76e0ff 80%);
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      filter: drop-shadow(0 2px 8px #31358399);
-    }
-    .promo-card .promo-label {
-      font-size: 1.18rem;
-      font-weight: 600;
-      color: #f7f7f7;
-      opacity: 0.97;
-      text-shadow: 0 2px 8px #20233533;
-    }
-    @media(max-width:700px) {
-      .promo-cards { flex-direction: column; gap: 1.3em; }
-    }
+      /* Custom scrollbar for Webkit */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #444;
+      }
+      
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .text-gradient {
+        background: linear-gradient(to bottom, #ffffff 0%, #a1a1aa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-    .reviews-section {
-      background: linear-gradient(117deg, rgba(21,27,48,0.96) 8%, rgba(16,17,26,0.89) 91%);
-      border-radius: 20px;
-      box-shadow: 0 6px 33px 0 rgba(15,18,32,0.22), 0 1.3px 0 rgba(255,255,255,0.18) inset;
-      max-width: 930px;
-      margin: 0 auto 2.5em auto;
-      padding: 2.3em 1.2em 2.5em 1.2em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      border: 1.5px solid rgba(255,255,255,0.11);
-      backdrop-filter: blur(14px) saturate(131%);
-    }
-    .reviews-title {
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: #ffd86b;
-      margin-bottom: 1.87em;
-      letter-spacing: .2px;
-      text-shadow: 0 3px 19px #fff4;
-    }
-    .reviews-carousel {
-      display: flex;
-      gap: 1.6em;
-      justify-content: center;
-      flex-wrap: wrap;
-      width: 100%;
-    }
-    .review-card {
-      background: linear-gradient(109deg, rgba(28,40,70,0.75) 13%, rgba(18,18,22,0.92) 87%);
-      border-radius: 14px;
-      padding: 1.7em 1.1em 1.2em 1.1em;
-      box-shadow: 0 0px 13px 0 rgba(24,30,38,0.17);
-      min-width: 195px;
-      max-width: 260px;
-      flex: 1 1 200px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin: 0 0.2em;
-      border: 1.1px solid #29324a;
-      backdrop-filter: blur(5px) saturate(130%);
-    }
-    .review-card .review-text {
-      font-size: 1.07rem;
-      font-style: italic;
-      color: #eaf5ff;
-      margin-bottom: 1.25em;
-      line-height: 1.5;
-      text-shadow: 0 2px 8px #30354126;
-    }
-    .review-card .review-author {
-      font-size: .98rem;
-      color: #6fc0ff;
-      letter-spacing: 0.2px;
-      font-weight: 600;
-      margin-top: auto;
-      text-shadow: 0 1px 7px #1f287a55;
-    }
-    @media(max-width: 700px) {
-      .reviews-carousel { flex-direction: column; gap: 0.9em; }
-    }
-    .features {
-      display: flex;
-      justify-content: center;
-      gap: 2em;
-      padding: 4em 2em;
-      flex-wrap: wrap;
-      text-align: center;
-    }
-    .feature img {
-      max-width: 80px;
-      margin-bottom: 1em;
-    }
-    .feature h2 {
-      font-size: 1.25rem;
-      margin-bottom: 0.5em;
-    }
-    .feature p {
-      font-size: 1rem;
-      color: #cccccc;
-    }
-    footer {
-      background-color: #0a0a0a;
-      color: #888888;
-      text-align: center;
-      padding: 3em 2em 2em;
-      border-top: 1px solid #222222;
-    }
-    footer img.logo {
-      max-width: 120px;
-      margin-bottom: 0.5em;
-    }
-    footer .tagline {
-      display: block;
-      margin-bottom: 1em;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #ffffff;
-      letter-spacing: 0.5px;
-    }
-    footer .footer-links {
-      margin: 1.5em 0;
-      display: flex;
-      justify-content: center;
-      gap: 2em;
-      flex-wrap: wrap;
-    }
-    footer .footer-links a {
-      color: #888888;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-    footer .footer-links a:hover {
-      color: #ffffff;
-    }
-    footer p.copyright {
-      margin-top: 1em;
-      font-size: 0.85rem;
-      color: #666666;
-    }
-  </style>
+      .text-gradient-gold {
+        background: linear-gradient(to right, #ffd86b, #7abfff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
 </head>
-<body>
-
-  <!-- Main Content -->
-  <main class="index-content">
-    <div class="intro-block">
-      <img src="logos.jpeg" alt="Campus Ticket Exchange Logo" class="logo" />
-      <p class="tagline">Verified student ticket resale</p>
-      <div class="cta-wrapper">
-        <a id="download-link" href="#" class="cta index-cta">Download on the App Store</a>
-      </div>
-    </div>
-    <div id="promo-modules-anchor"></div>
-  </main>
-
-  <!-- Promo and Reviews Sections (conditionally rendered) -->
-  <div id="promo-reviews-wrapper" style="display:none;">
-    <section class="promo-section">
-      <div class="promo-title">Over 100k+ Tickets Transacted and Counting</div>
-      <div class="promo-cards">
-        <div class="promo-card">
-          <div class="big-number">100k+</div>
-          <div class="promo-label">Tickets Transacted</div>
-        </div>
-        <div class="promo-card">
-          <div class="big-number">5+</div>
-          <div class="promo-label">Universities</div>
-        </div>
-        <div class="promo-card">
-          <div class="big-number">100%</div>
-          <div class="promo-label">Secure</div>
-        </div>
-        <div class="promo-card">
-          <div class="big-number">50,000+</div>
-          <div class="promo-label">Happy Students</div>
-        </div>
-      </div>
-    </section>
-    <section class="reviews-section">
-      <div class="reviews-title">Real Student Reviews</div>
-      <div class="reviews-carousel">
-        <div class="review-card">
-          <div class="review-text">“Rush made buying event tickets way less stressful—no scams. Super fast & easy!”</div>
-          <div class="review-author">– Maya, Ohio State</div>
-        </div>
-        <div class="review-card">
-          <div class="review-text">“Got my concert tickets instantly and connected with another student. Love the clean design!”</div>
-          <div class="review-author">– Chase, NYU</div>
-        </div>
-        <div class="review-card">
-          <div class="review-text">“The best way to sell my game day tickets. Payout was instant right to my account.”</div>
-          <div class="review-author">– Alice, USC</div>
-        </div>
-        <div class="review-card">
-          <div class="review-text">“All my friends use Rush—it’s trusted on my campus.”</div>
-          <div class="review-author">– Chris, Boston College</div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- Features -->
-  <section class="features">
-    <div class="feature" data-animate>
-      <img src="assets/feature1.png" alt="Instant Payments Icon">
-      <h2>Instant Payments</h2>
-      <p>Send and receive money without the hassle. No middlemen.</p>
-    </div>
-    <div class="feature" data-animate>
-      <img src="assets/feature2.png" alt="Verified Student Icon">
-      <h2>Student Verified</h2>
-      <p>Only verified students can post or buy; real students only.</p>
-    </div>
-    <div class="feature" data-animate>
-      <img src="assets/feature3.jpeg" alt="Campus Focused Icon">
-      <h2>Campus First</h2>
-      <p>Events, tickets, and reselling with students at your school.</p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <img src="logos.jpeg" alt="Campus Ticket Exchange Logo" class="logo" />
-    <span class="tagline">Verified student ticket resale</span>
-    <div class="footer-links">
-      <a href="contact.html">Contact</a>
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
-    <p class="copyright">© 2025 Rush Technologies LLC — All rights reserved</p>
-  </footer>
-
-  <!-- Animation Script -->
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-  </script>
-  <!-- Download Button Script and PROMO/REVIEWS TOGGLE LOGIC-->
-  <script>
-    const appId = "id6744488351";
-    const appStoreLink = `https://apps.apple.com/us/app/${appId}`;
-    const notIOSPage = "not-ios.html";
-    const downloadLink = document.getElementById("download-link");
-    downloadLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      if (isIOS) {
-        window.location.href = appStoreLink;
-      } else {
-        window.location.href = notIOSPage;
-      }
-    });
-
-    // GLOBAL TOGGLE (set to true to show, false to hide stats/reviews)
-    const SHOW_PROMO_MODULES = false;
-
-    // DOM logic for promo/reviews sections
-    window.addEventListener("DOMContentLoaded", function () {
-      var promoWrapper = document.getElementById("promo-reviews-wrapper");
-      if (SHOW_PROMO_MODULES) {
-        promoWrapper.style.display = "";
-        // Also, to make sure stats are visually below the fold, add a large invisible anchor
-        var anchor = document.getElementById("promo-modules-anchor");
-        // Remove any previous anchors
-        while (anchor.firstChild) anchor.removeChild(anchor.firstChild);
-        var hugeSpacer = document.createElement("div");
-        hugeSpacer.style.height = "12vh";
-        anchor.appendChild(hugeSpacer);
-      } else {
-        promoWrapper.style.display = "none";
-      }
-    });
-  </script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
